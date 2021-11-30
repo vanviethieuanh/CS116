@@ -26,26 +26,26 @@ Forest giống như sự kết hợp của các nỗ lực thuật toán Decisio
 
 Thuật toán đào tạo cho các khu rừng ngẫu nhiên áp dụng kỹ thuật tổng hợp bootstrap hay còn gọi là random sampling with replacement. Tức khi mình sample được 1 dữ liệu thì mình không bỏ dữ liệu đấy ra mà vẫn giữ lại trong tập dữ liệu ban đầu, rồi tiếp tục sample cho tới khi sample đủ n dữ liệu. Khi dùng kĩ thuật này thì tập n dữ liệu mới của mình có thể có những dữ liệu bị trùng nhau.
 
-Cho một tập huấn luyện X = $x_{1}$, ..., $x_{n}$ với các phản hồi Y = $y_{1}$, ..., $y_{n}$, đóng gói lặp đi lặp lại (B lần) chọn một mẫu ngẫu nhiên thay thế tập huấn luyện và lắp các cây vào các mẫu:
+Cho một tập huấn luyện X = <img src="https://render.githubusercontent.com/render/math?math=x_{1}">, ..., <img src="https://render.githubusercontent.com/render/math?math=x_{n}"> với các phản hồi Y = <img src="https://render.githubusercontent.com/render/math?math=y_{1}">, ..., <img src="https://render.githubusercontent.com/render/math?math=y_{n}">, đóng gói lặp đi lặp lại (B lần) chọn một mẫu ngẫu nhiên thay thế tập huấn luyện và lắp các cây vào các mẫu:
 
 Đối với b = 1, ..., B:
 
-1. Ví dụ huấn luyện mẫu, với thay thế n từ X, Y; gọi chúng là $X_{b}$, $Y_{b}$.
-2. Huấn luyện cây phân loại hoặc hồi quy $f_{b}$ trên $X_{b}$, $Y_{b}$.
+1. Ví dụ huấn luyện mẫu, với thay thế n từ X, Y; gọi chúng là <img src="https://render.githubusercontent.com/render/math?math=X_{b}">, <img src="https://render.githubusercontent.com/render/math?math=Y_{b}">.
+2. Huấn luyện cây phân loại hoặc hồi quy <img src="https://render.githubusercontent.com/render/math?math=f_{b}"> trên <img src="https://render.githubusercontent.com/render/math?math=X_{b}">, <img src="https://render.githubusercontent.com/render/math?math=Y_{b}">.
 
 Sau khi huấn luyện, có thể thực hiện dự đoán cho các mẫu chưa nhìn thấy x' bằng cách lấy đa số phiếu của các cây:
 
-$\hat{f}$ = $\frac{1}{B}$ $\sum_{b=1}^{B}$ $f_{b}$ (x')
+<img src="https://render.githubusercontent.com/render/math?math=\hat{f} = \frac{1}{B} \sum_{b=1}^{B} f_{b} (x')">
 
 Quy trình khởi động này dẫn đến hiệu suất mô hình tốt hơn vì nó làm giảm phương sai của mô hình mà không làm tăng độ chệch. Chỉ cần huấn luyện nhiều cây trên một tập huấn luyện duy nhất sẽ cho các cây có tương quan chặt chẽ, lấy mẫu bootstrap là một cách khử tương quan giữa các cây bằng cách hiển thị cho chúng các tập huấn luyện khác nhau. 
 
 Ngoài ra, ước tính về độ không chắc chắn của dự đoán có thể được thực hiện dưới dạng độ lệch chuẩn của các dự đoán từ tất cả các cây hồi quy riêng lẻ trên x ':
 
-$\sigma$ = $\sqrt{\frac{\sum_{b=1}^{B}(f_{b}(x') - \hat{f})^{2}}{B - 1}}$
+<img src="https://render.githubusercontent.com/render/math?math=\sigma = \sqrt{\frac{\sum_{b=1}^{B}(f_{b}(x') - \hat{f})^{2}}{B - 1}}">
 
 Trong đó: 
 + B là số cây.
-+ $x_{i}$ là số lượng mẫu huấn luyện
++ <img src="https://render.githubusercontent.com/render/math?math=x_{i}"> là số lượng mẫu huấn luyện
 
 # Hyperparameter of RandomForestClassifer sklearn
 
@@ -60,8 +60,8 @@ Trong đó:
 + min_impurity_decrease
 + bootstrap
 
-'{python}
-
+'''python
+    
     from sklearn.model_selection import RandomizedSearchCV
     
     # Number of trees in random forest
@@ -94,4 +94,5 @@ Trong đó:
                 'bootstrap': bootstrap}
 
     print(random_grid)
-'
+
+'''
