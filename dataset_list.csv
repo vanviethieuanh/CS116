@@ -1,6 +1,6 @@
-file_name,source,predict_target
-olympic.csv,https://www.kaggle.com/divyansh22/summer-olympics-medals,Medal
-heart_failure_clinical_records_dataset.csv,https://www.kaggle.com/andrewmvd/heart-failure-clinical-data,DEATH_EVENT
-pokemon.csv,https://www.kaggle.com/abcsds/pokemon,Legendary
-weatherAUS.csv,https://www.kaggle.com/jsphyg/weather-dataset-rattle-package,RainTomorrow
-winequality-red.csv,https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009,quality
+file_name,source,predict_target,title,predict_title
+olympic.csv,https://www.kaggle.com/divyansh22/summer-olympics-medals,Medal,Olympic Dataset,Medal
+heart_failure_clinical_records_dataset.csv,https://www.kaggle.com/andrewmvd/heart-failure-clinical-data,DEATH_EVENT,Heart Failure Dataset,Is Dead
+pokemon.csv,https://www.kaggle.com/abcsds/pokemon,Legendary,Pokemon Dataset,Is Lengendary Pokemon
+weatherAUS.csv,https://www.kaggle.com/jsphyg/weather-dataset-rattle-package,RainTomorrow,Australia Weather Dataset,Is Tomorrow Rain
+winequality-red.csv,https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009,quality,Wine Dataset,Score
