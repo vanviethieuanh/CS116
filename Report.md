@@ -8,6 +8,9 @@
 
 # Giới thiệu về Random Forest Classifier
 Random Forest Classifier là mô hình sử dụng để giải quyết bài toán classification. Nó sử dụng thuật toán Random forest, đây là thuật toán supervised learning trong máy học được sử dụng trong cả bài toán regression và classification.
+
+![image](./images/RandomForestClassifier.jpg)
+
 ## Giới thiệu về thuật toán Random Forest
 Random là ngẫu nhiên, Forest là rừng, nên ở thuật toán Random Forest sẽ xây dựng từ nhiều cây quyết định bằng thuật toán Decision Tree, tuy nhiên mỗi cây quyết định sẽ khác nhau (có yếu tố random). Sau đó kết quả dự đoán được tổng hợp từ các cây quyết định.
 Đối với bài toán này thì đầu ra của thuật toán Random Forest là loại được chọn bởi hầu hết các cây.
@@ -25,6 +28,8 @@ Forest giống như sự kết hợp của các nỗ lực thuật toán Decisio
 ### Bootstrap Aggregating
 
 Thuật toán đào tạo cho các khu rừng ngẫu nhiên áp dụng kỹ thuật tổng hợp bootstrap hay còn gọi là random sampling with replacement. Tức khi mình sample được 1 dữ liệu thì mình không bỏ dữ liệu đấy ra mà vẫn giữ lại trong tập dữ liệu ban đầu, rồi tiếp tục sample cho tới khi sample đủ n dữ liệu. Khi dùng kĩ thuật này thì tập n dữ liệu mới của mình có thể có những dữ liệu bị trùng nhau.
+
+![image](./images/bootstrap-aggregation-bagging.png)
 
 Cho một tập huấn luyện X = <img src="https://render.githubusercontent.com/render/math?math=x_{1}">, ..., <img src="https://render.githubusercontent.com/render/math?math=x_{n}"> với các phản hồi Y = <img src="https://render.githubusercontent.com/render/math?math=y_{1}">, ..., <img src="https://render.githubusercontent.com/render/math?math=y_{n}">, đóng gói lặp đi lặp lại (B lần) chọn một mẫu ngẫu nhiên thay thế tập huấn luyện và lắp các cây vào các mẫu:
 
