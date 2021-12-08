@@ -7,9 +7,9 @@
 | Lê Văn Phước      | 19522054 |
 
 # Giới thiệu về Random Forest Classifier
-Random Forest Classifier là mô hình sử dụng để giải quyết bài toán classification. Nó sử dụng thuật toán Random forest, đây là thuật toán supervised learning trong máy học.
+Random Forest Classifier là mô hình sử dụng để giải quyết bài toán classification. Nó sử dụng thuật toán Random forest, đây là thuật toán supervised learning trong máy học được sử dụng trong cả bài toán regression và classification.
 ## Giới thiệu về thuật toán Random Forest
-Random là ngẫu nhiên, Forest là rừng, nên ở thuật toán Random Forest sẽ xây dựng nhiều cây quyết định bằng thuật toán Decision Tree, tuy nhiên mỗi cây quyết định sẽ khác nhau (có yếu tố random). Sau đó kết quả dự đoán được tổng hợp từ các cây quyết định.
+Random là ngẫu nhiên, Forest là rừng, nên ở thuật toán Random Forest sẽ xây dựng từ nhiều cây quyết định bằng thuật toán Decision Tree, tuy nhiên mỗi cây quyết định sẽ khác nhau (có yếu tố random). Sau đó kết quả dự đoán được tổng hợp từ các cây quyết định.
 Đối với bài toán này thì đầu ra của thuật toán Random Forest là loại được chọn bởi hầu hết các cây.
 
 Về mặt kỹ thuật, thuật toán Random Forest là một phương pháp tổng hợp (dựa trên cách tiếp cận chia để trị) của các cây quyết định được tạo trên một tập dữ liệu được phân chia ngẫu nhiên. Tập hợp các bộ phân loại cây quyết định này còn được gọi là rừng. Các cây quyết định riêng lẻ được tạo bằng cách sử dụng một chỉ báo lựa chọn thuộc tính như mức tăng thông tin, tỷ lệ tăng cho mỗi thuộc tính. Mỗi cây phụ thuộc vào một mẫu ngẫu nhiên độc lập. Trong một bài toán phân loại, mỗi cây bình chọn và lớp phổ biến nhất được chọn làm kết quả cuối cùng. Nó đơn giản hơn và mạnh mẽ hơn so với các thuật toán phân loại phi tuyến tính khác.
@@ -46,8 +46,12 @@ Ngoài ra, ước tính về độ không chắc chắn của dự đoán có th
 Trong đó: 
 + B là số cây.
 + <img src="https://render.githubusercontent.com/render/math?math=x_{i}"> là số lượng mẫu huấn luyện
-
-# Hyperparameter of RandomForestClassifer sklearn
+# Ưu điểm và nhược điểm của thuật toán  Random Forest
+## Ưu điểm
+Khắc phục được yếu điểm lớn nhất của thuật toán Decision Tree, khi xây dựng Decision Tree nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị overfitting, hay nói cách khác là mô hình có high variance. Thuật toán Random Forest giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên(Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần thuộc tính ... ), và kết quả cuối cùng được tổng hợp lại.
+## Nhược điểm
+Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn. 
+# Các siêu tham số thuật toán Random Forest
 
 + n_estimators: Số lượng cây trong rừng.
 + criterion: Chức năng đo lường chất lượng của một lần tách
@@ -57,8 +61,11 @@ Trong đó:
 + min_weight_fraction_leaf: Phần có trọng số tối thiểu của tổng trọng số (của tất cả các mẫu đầu vào) cần thiết để ở một nút lá
 + max_features:  Số lượng các tính năng cần xem xét khi tìm kiếm sự phân chia tốt nhất
 + bootstrap: Các mẫu bootstrap có được sử dụng khi xây dựng cây hay không
-
-'''python
+# Áp dụng vào bộ dữ liệu:
+# Bộ dữ liệu
+## Cách thức tối ưu hóa siêu tham số:
+### Phương pháp tối ưu bằng Random Search
+```python
     
     from sklearn.model_selection import RandomizedSearchCV
     
@@ -93,4 +100,50 @@ Trong đó:
 
     print(random_grid)
 
-'''
+```
+### Phương pháp tối ưu bằng thuật giải Evolutionary Algorithms
+Ý tưỡng của thuật toán được sử dụng để tối ưu tham số dự trên thuật toán di truyền Differential Evolution. Differential Evolution thường được sử dụng cho các bài toán tối ưu hộp đen dành cho các biến liên tục. Ở đây thuật toán được xây dựng với quần thể bao gồm 256 cá thể và sau 3000 lần dánh giá quần thể sẽ dần dần cái thiện đi đến hướng tham số tối ưu nhất có thể, cuối cùng khi kết thúc thuật toán cá thể tốt nhất sẽ được lựa chọn làm siêu tham số cho mô hình.
+```python
+def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_evaluation=3000):
+  dimensions = len(bounds)
+  lower_bound, upper_bound = np.asarray(bounds).T
+  diff = np.fabs(lower_bound - upper_bound)
+  pop = lower_bound + diff * np.random.rand(popsize, dimensions)
+
+  fitness = np.asarray([-f_(*covert_array(ind)) for ind in pop])
+  best_idx = np.argmin(fitness)
+  count_evaluations = len(pop)
+  best = np.copy(pop[best_idx])
+  results = []
+  results.append((np.copy(best), -fitness[best_idx]))
+  done = True 
+
+  while done:
+    for j in range(popsize):
+      idxs = [idx for idx in range(popsize) if idx != j]
+      a,b,c = pop[np.random.choice(idxs, 3, replace=False)]
+      mutant = np.clip(a + F_scale*(b-c), lower_bound, upper_bound)
+
+      cross_points = np.random.rand(dimensions) < cross_prob
+      if not np.any(cross_points):
+        cross_points[np.random.randint(0,dimensions)] = True
+
+      trial = np.where(cross_points, mutant, pop[j])
+      
+      f = -f_(*covert_array(trial))
+      count_evaluations += 1
+      
+      if f < fitness[j]:
+        fitness[j] = f
+        pop[j] = trial
+        if f < fitness[best_idx]:
+          best_idx = j
+          best = trial
+    if count_evaluations + len(pop) > max_evaluation:
+      done = False
+      all_paramater = f_score(*covert_array(best))
+    results.append((np.copy(best), -fitness[best_idx])) 
+  return [results,all_paramater]
+```
+# Kết quả thực nghiệm
+# Kết luận
