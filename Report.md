@@ -51,7 +51,8 @@ Trong đó:
 Khắc phục được yếu điểm lớn nhất của thuật toán Decision Tree, khi xây dựng Decision Tree nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị overfitting, hay nói cách khác là mô hình có high variance. Thuật toán Random Forest giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên(Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần thuộc tính ... ), và kết quả cuối cùng được tổng hợp lại.
 ## Nhược điểm
 Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn. 
-# Các siêu tham số thuật toán Random Forest
+# Điều chỉnh siêu tham số (Hyperparameter tuning)
+## Các siêu tham số của mô hình Random Forest Classifier của thư viện sklearn
 
 + n_estimators: Số lượng cây trong rừng.
 + criterion: Chức năng đo lường chất lượng của một lần tách
@@ -61,13 +62,59 @@ Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quy
 + min_weight_fraction_leaf: Phần có trọng số tối thiểu của tổng trọng số (của tất cả các mẫu đầu vào) cần thiết để ở một nút lá
 + max_features:  Số lượng các tính năng cần xem xét khi tìm kiếm sự phân chia tốt nhất
 + bootstrap: Các mẫu bootstrap có được sử dụng khi xây dựng cây hay không
-# Áp dụng vào bộ dữ liệu:
-# Bộ dữ liệu
+
 ## Cách thức tối ưu hóa siêu tham số:
-### Phương pháp tối ưu bằng Random Search
+### Phương pháp tối ưu hóa bằng Grid Search
+Tìm kiếm theo lưới (Grid Search) là một cách truyền thống để thực hiện tối ưu hóa siêu tham số. Nó hoạt động bằng cách tìm kiếm toàn diện thông qua một tập con siêu tham số được chỉ định.
+
+Lợi ích của tìm kiếm lưới (grid search) là nó đảm bảo để tìm ra sự kết hợp tối ưu của các tham số được cung cấp. 
+
+Hạn chế là nó rất tốn thời gian và tính toán tốn kém.
+
+Để hiểu hơn cách tối ưu hóa siêu tham số này, bạn có thể tham khảo các bước thực hiện ở đoạn mã bên dưới:
+
+```python
+    
+    # Nhập các thư viện cần thiết
+    from sklearn.model_selection import GridSearchCV
+    import numpy as np
+    from sklearn.ensemble import RandomForestClassifier
+    
+    # Tạo các mảng các giá trị của siêu tham số
+    max_features_range = np.arange(1,6,1)
+    n_estimators_range = np.arange(10,210,10)
+    
+    # Tạo một lưới các tham số
+    param_grid = dict(max_features=max_features_range, n_estimators=n_estimators_range)
+    
+    # Khởi tạo mô hình cần tối ưu hóa các siêu tham số
+    rf = RandomForestClassifier()
+    
+    # Sử dụng hàm GridSearch của thư viện sklearn để điểu chỉnh siêu tham số
+    grid = GridSearchCV(estimator=rf, param_grid=param_grid, scoring='roc_auc', cv=5)
+    
+    # Tiến hành đào tạo
+    grid.fit(X_train, Y_train)
+    
+    # In ra kết quả 
+    print("The best parameters are %s with a score of %0.2f"
+          % (grid.best_params_, grid.best_score_))
+```
+
+### Phương pháp tối ưu bằng tìm kiếm ngẫu nhiên (Random Search)
+
+Tìm kiếm ngẫu nhiên (Ramdom Search) khác với tìm kiếm lưới chủ yếu ở chổ nó tìm kiếm tập hợp con được chỉ định của các siêu tham số một cách ngẫu nhiên thay vì toàn bộ.
+
+Lợi ích chính là giảm thời gian xử lý.
+
+Hạn chế là phương pháp này không đảm bảo sẽ tìm ra sự kết hợp tối ưu của các siêu tham số.
+
+Để hiểu hơn cách tối ưu hóa siêu tham số này, bạn có thể tham khảo các bước thực hiện ở đoạn mã bên dưới:
+
 ```python
     
     from sklearn.model_selection import RandomizedSearchCV
+    from sklearn.ensemble import RandomForestClassifier
     
     # Number of trees in random forest
     n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
@@ -89,7 +136,9 @@ Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quy
     min_samples_leaf = [1, 2, 4]
     
     # Method of selecting samples for training each tree
-    bootstrap = [True, False]# Create the random grid
+    bootstrap = [True, False]
+    
+    # Create the random grid
     random_grid = {'n_estimators': n_estimators,
                 'criterion': criterion,
                 'max_features': max_features,
@@ -98,9 +147,72 @@ Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quy
                 'min_samples_leaf': min_samples_leaf,
                 'bootstrap': bootstrap}
 
-    print(random_grid)
+    # Sử dụng hàm RandomizedSearchCV của thư viện sklearn để điểu chỉnh siêu tham số
+    rand = RandomizedSearchCV(estimator=rf, param_grid=param_grid, scoring='roc_auc', cv=5)
+    
+    # Tiến hành đào tạo
+    rand.fit(X_train, Y_train)
+    
+    # In ra kết quả 
+    print("The best parameters are %s with a score of %0.2f"
+          % (rand.best_params_, rand.best_score_))
 
 ```
+
+### Phương pháp tối ưu bằng thuật toán di truyền (Genetic Algorithm)
+
+Ý tưởng của thuật toán di truyền là đạt được các giải pháp tối ưu của hàm mục tiêu bằng cách chọn giải pháp tốt nhất hoặc phù hợp nhất cùng với sự xuất hiện đột biến ngẫu nhiên và hiếm gặp.
+
+Để hiểu hơn cách tối ưu hóa siêu tham số này, bạn có thể tham khảo các bước thực hiện ở đoạn mã bên dưới:
+
+```python
+    
+    # Nhập các thư viện cần thiết
+    from sklearn_genetic import GASearchCV
+    from sklearn.model_selection import StratifiedKFold
+    from sklearn.ensemble import RandomForestClassifier
+    
+    # Tạo một lưới các siêu tham số
+    param_grid = {'min_weight_fraction_leaf': Continuous(0.01, 0.5, distribution='log-uniform'),
+              'bootstrap': Categorical([True, False]),
+              'max_depth': Integer(2, 30), 
+              'criterion': Categorical(['gini', 'entropy']),
+              'max_features': Categorical(['auto', 'sqrt', 'log2']),
+              'max_leaf_nodes': Integer(2, 35), 
+              'n_estimators': Integer(10, 300)}
+    
+    # Khởi tạo mô hình cần tối ưu hóa các siêu tham số
+    clf = RandomForestClassifier()
+    
+    # Sử dụng KFold phân tầng với n_splits = 3
+    cv = StratifiedKFold(n_splits=3, shuffle=True)
+    
+    # Sử dụng hàm GASearchCV của thư viện sklearn để điểu chỉnh siêu tham số
+    evolved_estimator = GASearchCV(estimator=clf,
+                               cv=cv,
+                               scoring='accuracy',
+                               population_size=10,
+                               generations=25,
+                               tournament_size=3,
+                               elitism=True,
+                               crossover_probability=0.8,
+                               mutation_probability=0.1,
+                               param_grid=param_grid,
+                               criteria='max',
+                               algorithm='eaMuPlusLambda',
+                               n_jobs=-1,
+                               verbose=True,
+                               keep_top_k=4)
+    
+    # Tiến hành đào tạo
+    evolved_estimator.fit(X_train,y_train)
+    
+    # In ra kết quả 
+    print("The best parameters are %s with a score of %0.2f"
+          % (evolved_estimator.best_params_, evolved_estimator.best_score_))
+    
+```
+
 ### Phương pháp tối ưu bằng thuật giải Evolutionary Algorithms
 Ý tưỡng của thuật toán được sử dụng để tối ưu tham số dự trên thuật toán di truyền Differential Evolution. Differential Evolution thường được sử dụng cho các bài toán tối ưu hộp đen dành cho các biến liên tục. Ở đây thuật toán được xây dựng với quần thể bao gồm 256 cá thể và sau 3000 lần dánh giá quần thể sẽ dần dần cái thiện đi đến hướng tham số tối ưu nhất có thể, cuối cùng khi kết thúc thuật toán cá thể tốt nhất sẽ được lựa chọn làm siêu tham số cho mô hình.
 ```python
@@ -145,5 +257,8 @@ def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_e
     results.append((np.copy(best), -fitness[best_idx])) 
   return [results,all_paramater]
 ```
+# Áp dụng vào bộ dữ liệu:
+# Bộ dữ liệu
+
 # Kết quả thực nghiệm
 # Kết luận
