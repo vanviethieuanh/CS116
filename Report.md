@@ -49,16 +49,14 @@ Trong đó:
 
 # Hyperparameter of RandomForestClassifer sklearn
 
-+ n_estimators
-+ criterion
-+ max_depth
-+ min_samples_split
-+ min_samples_leaf
-+ min_weight_fraction_leaf
-+ max_features
-+ max_leaf_nodes
-+ min_impurity_decrease
-+ bootstrap
++ n_estimators: Số lượng cây trong rừng.
++ criterion: Chức năng đo lường chất lượng của một lần tách
++ max_depth: Chiều sâu tối đa của cây
++ min_samples_split: Số lượng mẫu tối thiểu cần thiết để tách một nút nội bộ
++ min_samples_leaf: Số lượng mẫu tối thiểu cần thiết để có ở một nút lá
++ min_weight_fraction_leaf: Phần có trọng số tối thiểu của tổng trọng số (của tất cả các mẫu đầu vào) cần thiết để ở một nút lá
++ max_features:  Số lượng các tính năng cần xem xét khi tìm kiếm sự phân chia tốt nhất
++ bootstrap: Các mẫu bootstrap có được sử dụng khi xây dựng cây hay không
 
 '''python
     
