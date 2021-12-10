@@ -54,10 +54,13 @@ Trong đó:
 # Ưu điểm và nhược điểm của thuật toán  Random Forest
 ## Ưu điểm
 Khắc phục được yếu điểm lớn nhất của thuật toán Decision Tree, khi xây dựng Decision Tree nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị overfitting, hay nói cách khác là mô hình có high variance. Thuật toán Random Forest giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên(Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần đặc trưng ... ), và kết quả cuối cùng được tổng hợp lại từ trung bình các kết quả dó đó nó sẽ cân bằng được độ đính sách(high accuracy) và phương sai(bias-variance), công thêm vào đó thuật toán rất phù hợp khi có rất nhiều đặc trưng có trong bộ dữ liệu. 
+
 Ngoài ra thuật toán Random Forest được sử dụng cho cả bài toán hồi quy và phân lớp, dể sử dụng khi không cần scale hay transform dữ liêu do thuật toán phù hợp cho cả dạng dữ liệu số và dữ liệu phân loại và ít bị ảnh hưởng với dữ liệu nhiễu trong bộ dữ liệu.
+
 Thêm một yếu tố được sử dụng nhiều đó là thuật toán Random Forest có thể được sử dụng tốt trong cả bộ dữ liệu có các đặc trưng quan hệ tuyến tính và phi tuyến tính.
 ## Nhược điểm
 Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn. 
+
 Thuật toán cũng có thêm khuyết điểm bào gồm không dể diển giải hay biểu diển như các thuật toán tuyến tính, và Random forests giống như một thuật toán giải quyết hộp đen, có ít quyền kiểm soát những gì mô hình thực hiện.
 # Điều chỉnh siêu tham số (Hyperparameter tuning)
 ## Các siêu tham số của mô hình Random Forest Classifier của thư viện sklearn
