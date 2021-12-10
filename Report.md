@@ -1,3 +1,5 @@
+[toc]
+
 # Random Forest and effect of Hyperparameters on result
 
 | Tên thành viên    | MSSV     |
@@ -6,7 +8,19 @@
 | Văn Viết Nhật     | 19521958 |
 | Lê Văn Phước      | 19522054 |
 
+# Các bộ dữ liệu sử dụng
+
+| Tên file                                   | Source                                                       | Tên bộ dữ liệu               | Số parameter | Thông tin dự đoán                 | Số lượng record |
+| ------------------------------------------ | ------------------------------------------------------------ | ---------------------------- | ------------ | --------------------------------- | --------------- |
+| olympic.csv                                | https://www.kaggle.com/divyansh22/summer-olympics-medals     | Dữ liệu về trao giải Olympic | 10           | Loại huân chương nhận được ?      | 15433           |
+| heart_failure_clinical_records_dataset.csv | https://www.kaggle.com/andrewmvd/heart-failure-clinical-data | Dữ liệu về suy tim           | 12           | Người đó có tử vong do bệnh tim ? | 299             |
+| pokemon.csv                                | https://www.kaggle.com/abcsds/pokemon                        | Dữ liệu về Pokemon           | 12           | Có phải pokemon huyền thoại ?     | 800             |
+| weatherAUS.csv                             | https://www.kaggle.com/jsphyg/weather-dataset-rattle-package | Dữ liệu thời tiết ở Úc       | 22           | Ngày mai có mưa ?                 | 145460          |
+| winequality-red.csv                        | https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 | Dữ liệu về rượu vang đỏ      | 11           | Chất lượng rượu bao nhiêu điểm ?  | 1599            |
+| MNIST                                      | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | Dữ liệu chữ số viết tay      | 784          | Hình ảnh là số mấy (0-9) ?        | 60000           |
+
 # Giới thiệu về Random Forest Classifier
+
 Random Forest Classifier là mô hình sử dụng để giải quyết bài toán classification. Nó sử dụng thuật toán Random forest, đây là thuật toán supervised learning trong máy học.
 ## Giới thiệu về thuật toán Random Forest
 Random là ngẫu nhiên, Forest là rừng, nên ở thuật toán Random Forest sẽ xây dựng nhiều cây quyết định bằng thuật toán Decision Tree, tuy nhiên mỗi cây quyết định sẽ khác nhau (có yếu tố random). Sau đó kết quả dự đoán được tổng hợp từ các cây quyết định.
@@ -58,41 +72,39 @@ Trong đó:
 + max_features
 + max_leaf_nodes
 + min_impurity_decrease
-+ bootstrap
++ bootstrap    
 
-'''python
-    
-    from sklearn.model_selection import RandomizedSearchCV
-    
-    # Number of trees in random forest
-    n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
-    
-    # The function to measure the quality of a split
-    criterion = ['gini', 'entropy']
+```python
+from sklearn.model_selection import RandomizedSearchCV
 
-    # Number of features to consider at every split
-    max_features = ['auto', 'sqrt']
-    
-    # Maximum number of levels in tree
-    max_depth = [int(x) for x in np.linspace(10, 110, num = 11)]
-    max_depth.append(None)
-    
-    # Minimum number of samples required to split a node
-    min_samples_split = [2, 5, 10]
-    
-    # Minimum number of samples required at each leaf node
-    min_samples_leaf = [1, 2, 4]
-    
-    # Method of selecting samples for training each tree
-    bootstrap = [True, False]# Create the random grid
-    random_grid = {'n_estimators': n_estimators,
-                'criterion': criterion,
-                'max_features': max_features,
-                'max_depth': max_depth,
-                'min_samples_split': min_samples_split,
-                'min_samples_leaf': min_samples_leaf,
-                'bootstrap': bootstrap}
+# Number of trees in random forest
+n_estimators = [int(x) for x in np.linspace(start = 200, stop = 2000, num = 10)]
 
-    print(random_grid)
+# The function to measure the quality of a split
+criterion = ['gini', 'entropy']
 
-'''
+# Number of features to consider at every split
+max_features = ['auto', 'sqrt']
+
+# Maximum number of levels in tree
+max_depth = [int(x) for x in np.linspace(10, 110, num = 11)]
+max_depth.append(None)
+
+# Minimum number of samples required to split a node
+min_samples_split = [2, 5, 10]
+
+# Minimum number of samples required at each leaf node
+min_samples_leaf = [1, 2, 4]
+
+# Method of selecting samples for training each tree
+bootstrap = [True, False]# Create the random grid
+random_grid = {'n_estimators': n_estimators,
+            'criterion': criterion,
+            'max_features': max_features,
+            'max_depth': max_depth,
+            'min_samples_split': min_samples_split,
+            'min_samples_leaf': min_samples_leaf,
+            'bootstrap': bootstrap}
+
+print(random_grid)
+```
