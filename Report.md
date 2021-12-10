@@ -8,17 +8,6 @@
 | Văn Viết Nhật     | 19521958 |
 | Lê Văn Phước      | 19522054 |
 
-# Các bộ dữ liệu sử dụng
-
-| Tên file                                   | Source                                                                                                             | Tên bộ dữ liệu               | Số parameter | Thông tin dự đoán                 | Số lượng record |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- | ------------ | --------------------------------- | --------------- |
-| olympic.csv                                | https://www.kaggle.com/divyansh22/summer-olympics-medals                                                           | Dữ liệu về trao giải Olympic | 10           | Loại huân chương nhận được ?      | 15433           |
-| heart_failure_clinical_records_dataset.csv | https://www.kaggle.com/andrewmvd/heart-failure-clinical-data                                                       | Dữ liệu về suy tim           | 12           | Người đó có tử vong do bệnh tim ? | 299             |
-| pokemon.csv                                | https://www.kaggle.com/abcsds/pokemon                                                                              | Dữ liệu về Pokemon           | 12           | Có phải pokemon huyền thoại ?     | 800             |
-| weatherAUS.csv                             | https://www.kaggle.com/jsphyg/weather-dataset-rattle-package                                                       | Dữ liệu thời tiết ở Úc       | 22           | Ngày mai có mưa ?                 | 145460          |
-| winequality-red.csv                        | https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009                                                    | Dữ liệu về rượu vang đỏ      | 11           | Chất lượng rượu bao nhiêu điểm ?  | 1599            |
-| MNIST                                      | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | Dữ liệu chữ số viết tay      | 784          | Hình ảnh là số mấy (0-9) ?        | 60000           |
-
 # Giới thiệu về Random Forest Classifier
 
 Random Forest Classifier là mô hình sử dụng để giải quyết bài toán classification. Nó sử dụng thuật toán Random forest, đây là thuật toán supervised learning trong máy học được sử dụng trong cả bài toán regression và classification.
@@ -315,8 +304,16 @@ def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_e
 ```
 
 # Áp dụng vào bộ dữ liệu:
+## Các bộ dữ liệu sử dụng
 
-## Bộ dữ liệu
+| Tên file                                   | Source                                                                                                             | Tên bộ dữ liệu               | Số parameter | Thông tin dự đoán                 | Số lượng record |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- | ------------ | --------------------------------- | --------------- |
+| olympic.csv                                | https://www.kaggle.com/divyansh22/summer-olympics-medals                                                           | Dữ liệu về trao giải Olympic | 10           | Loại huân chương nhận được ?      | 15433           |
+| heart_failure_clinical_records_dataset.csv | https://www.kaggle.com/andrewmvd/heart-failure-clinical-data                                                       | Dữ liệu về suy tim           | 12           | Người đó có tử vong do bệnh tim ? | 299             |
+| pokemon.csv                                | https://www.kaggle.com/abcsds/pokemon                                                                              | Dữ liệu về Pokemon           | 12           | Có phải pokemon huyền thoại ?     | 800             |
+| weatherAUS.csv                             | https://www.kaggle.com/jsphyg/weather-dataset-rattle-package                                                       | Dữ liệu thời tiết ở Úc       | 22           | Ngày mai có mưa ?                 | 145460          |
+| winequality-red.csv                        | https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009                                                    | Dữ liệu về rượu vang đỏ      | 11           | Chất lượng rượu bao nhiêu điểm ?  | 1599            |
+| MNIST                                      | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | Dữ liệu chữ số viết tay      | 784          | Hình ảnh là số mấy (0-9) ?        | 60000           |
 
 ## Kết quả thực nghiệm
 
