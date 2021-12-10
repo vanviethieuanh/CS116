@@ -59,14 +59,20 @@ Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quy
 # Điều chỉnh siêu tham số (Hyperparameter tuning)
 ## Các siêu tham số của mô hình Random Forest Classifier của thư viện sklearn
 
-+ n_estimators: Số lượng cây trong rừng.
-+ criterion: Chức năng đo lường chất lượng của một lần tách
-+ max_depth: Chiều sâu tối đa của cây
-+ min_samples_split: Số lượng mẫu tối thiểu cần thiết để tách một nút nội bộ
-+ min_samples_leaf: Số lượng mẫu tối thiểu cần thiết để có ở một nút lá
-+ min_weight_fraction_leaf: Phần có trọng số tối thiểu của tổng trọng số (của tất cả các mẫu đầu vào) cần thiết để ở một nút lá
-+ max_features:  Số lượng các tính năng cần xem xét khi tìm kiếm sự phân chia tốt nhất
-+ bootstrap: Các mẫu bootstrap có được sử dụng khi xây dựng cây hay không
++ **n_estimators,{int} giá trị mặc định là 100**: Xác định số lượng cây decision tree được sự dụng trong mô hình Rondom Forest.
++ **criterion,{"gini”, “entropy”} giá trị mặc định là "gini"** : Xác định hàm sử dụng để đo lường chất lượng của một lần tách được sử dụng cho các Decision tree trong mô hình
++ **max_depth,{int} giá trị mặc định là None"**: Tham số giới hạn chiều sâu tối đa của cây decision tree trong mô hình, nếu giá trị là *None* thì các node lá của cây decision tree sẽ mở rộng đạt đến *pure* hoặc tất cả các node lá chứa ít mẫu hơn giá trị siêu tham số *min_samples_split*
++ **min_samples_split,{int hoặc float} giá trị mặc định là 2**: Tham số xác định số lượng mẫu tối thiểu cần thiết để tách một nút nội bộ, với kiểu giá trị đối số là **float**  thì giá trị *min samples split* được xác định bằng phép toán `ceil(min_samples_split * n_samples)` 
++ **min_samples_leaf,{int hoặc float} giá trị mặc định là 1**: Số lượng mẫu tối thiểu cần thiết để có ở một nút lá, với mỗi điểm phân tách ở bất kỳ độ sâu nào của cây decison tree chỉ được xét nếu nó để lại ít nhất các mẫu train *min_samples_leaf* trong mỗi nhánh ở phía bên trái và bên phải, với kiểu giá trị đối số là **float** thì giá trị *min samples leaf* được xác định bằng phép toán `ceil(min_samples_leaf * n_samples)`
++ **min_weight_fraction_leaf,{float} giá trị mặc định là 0.0**: Xác định trọng số tối thiểu của tổng trọng số (của tất cả các mẫu đầu vào) cần thiết có ở một node lá, mặc định giá truyền vào 0.0 hay tham số không được cung cấp tương đương với các mẫu có trọng số bằng nhau.
++ **max_features,{“auto”, “sqrt”, “log2” int hoặc float} giá trị mặc định là "auto"**: Tham số xác định số lượng các đặc trưng cần xem xét khi xác định sự phân chia tốt nhất, ý nghĩa của các đối sộ được sử dụng cho siêu tham số *max_feature** 
+    + **int**: Mô hình sử dụng `max_features ` cho mỗi lần phân chia node
+    + **float**: Giá trị `max_feature` được sử dụng làm thừa số trong phép tính ` round(max_features * n_features)`, kết quả trả về của phép toán được sử dụng để xác định các đặc trưng trong phân tách các node
+    + **sqrt**: Số lượng đặc trưng được sử dụng cho phân chia node bằng với `sqrt(n_features)`
+    + **log**: Số lượng đặc trưng được sử dụng cho phân chia node bằng với `log2(n_features)`
+    + **auto**: Đối số mặc định, ý nghĩa tương đương với đối số *sqrt*
+    + **None**: Giá trị `max_features` bằng đúng với số lượng các đặc trung `n_features`
++ **bootstrap,{bool} giá trị mặc định là True** : Siêu tham số chỉ ra các mẫu bootstrap có được sử dụng khi xây dựng cây hay không, nếu giá trị là *False* thì mỗi mô hình cây decision tree được xây dụng từ toàn bộ dữ liệu.
 
 ## Cách thức tối ưu hóa siêu tham số:
 ### Phương pháp tối ưu hóa bằng Grid Search
@@ -263,7 +269,17 @@ def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_e
   return [results,all_paramater]
 ```
 # Áp dụng vào bộ dữ liệu:
-# Bộ dữ liệu
+## Bộ dữ liệu
 
-# Kết quả thực nghiệm
+## Kết quả thực nghiệm
 # Kết luận
+# Tài liệu tham kháo 
+[**[1]** RandomForest Classifier Sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)
+
+[**[2]** Random Forest algorithm](https://machinelearningcoban.com/tabml_book/ch_model/random_forest.html)
+
+[**[3]** Decision Tree algorithm](https://machinelearningcoban.com/tabml_book/ch_model/decision_tree.html)
+
+[**[4]** Phân lớp bằng Random Forests ](https://viblo.asia/p/phan-lop-bang-random-forests-trong-python-djeZ1D2QKWz)
+
+
