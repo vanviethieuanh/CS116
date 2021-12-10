@@ -306,14 +306,35 @@ def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_e
 # Áp dụng vào bộ dữ liệu:
 ## Các bộ dữ liệu sử dụng
 
-| Tên file                                   | Source                                                                                                             | Tên bộ dữ liệu               | Số parameter | Thông tin dự đoán                 | Số lượng record |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- | ------------ | --------------------------------- | --------------- |
-| olympic.csv                                | https://www.kaggle.com/divyansh22/summer-olympics-medals                                                           | Dữ liệu về trao giải Olympic | 10           | Loại huân chương nhận được ?      | 15433           |
-| heart_failure_clinical_records_dataset.csv | https://www.kaggle.com/andrewmvd/heart-failure-clinical-data                                                       | Dữ liệu về suy tim           | 12           | Người đó có tử vong do bệnh tim ? | 299             |
-| pokemon.csv                                | https://www.kaggle.com/abcsds/pokemon                                                                              | Dữ liệu về Pokemon           | 12           | Có phải pokemon huyền thoại ?     | 800             |
-| weatherAUS.csv                             | https://www.kaggle.com/jsphyg/weather-dataset-rattle-package                                                       | Dữ liệu thời tiết ở Úc       | 22           | Ngày mai có mưa ?                 | 145460          |
-| winequality-red.csv                        | https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009                                                    | Dữ liệu về rượu vang đỏ      | 11           | Chất lượng rượu bao nhiêu điểm ?  | 1599            |
-| MNIST                                      | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | Dữ liệu chữ số viết tay      | 784          | Hình ảnh là số mấy (0-9) ?        | 60000           |
+| Tên bộ dữ liệu               | Thông tin dự đoán                 | Source                                                       | Tên file                                   | Số parameter | Số lượng record |
+| ---------------------------- | --------------------------------- | ------------------------------------------------------------ | ------------------------------------------ | ------------ | --------------- |
+| Dữ liệu về trao giải Olympic | Loại huân chương nhận được ?      | https://www.kaggle.com/divyansh22/summer-olympics-medals     | olympic.csv                                | 10           | 15433           |
+| Dữ liệu về suy tim           | Người đó có tử vong do bệnh tim ? | https://www.kaggle.com/andrewmvd/heart-failure-clinical-data | heart_failure_clinical_records_dataset.csv | 12           | 299             |
+| Dữ liệu về Pokemon           | Có phải pokemon huyền thoại ?     | https://www.kaggle.com/abcsds/pokemon                        | pokemon.csv                                | 12           | 800             |
+| Dữ liệu thời tiết ở Úc       | Ngày mai có mưa ?                 | https://www.kaggle.com/jsphyg/weather-dataset-rattle-package | weatherAUS.csv                             | 22           | 145460          |
+| Dữ liệu về rượu vang đỏ      | Chất lượng rượu bao nhiêu điểm ?  | https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 | winequality-red.csv                        | 11           | 1599            |
+| Dữ liệu chữ số viết tay      | Hình ảnh là số mấy (0-9) ?        | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | MNIST                                      | 784          | 60000           |
+
+Các bộ dữ liệu được chọn có những tính chất đặc thù riêng tạo nên tính đa dạng cho việc thực nghiệm với thuật toán:
+
+- Đa dạng về số lượng đặc trưng: (10,11,12) ít, (22) trung bình, (784) nhiều
+- Đa dạng về số lượng record: (299, 800) ít, (1599, 15433) trung bình, (60000, 145460) nhiều
+- Đa dạng về tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn: (pokemon, olympic) mơ hồ, (heart failure, winequality) bình thường, (MNIST, weather) rõ ràng. *Xin lưu ý rằng điểm của rượu tuy từ những thông tin kỹ thuật rõ ràng nhưng những biến cố ngẫu nhiên như người chấm điểm, món ăn và môi trường cũng như cảm xúc tác động rất nhiều, tương tự với việc một người bị suy tim có thể do yếu tố môi trường và cảm xúc tác động. Những bộ dữ liệu như MNIST thì hoàn toàn có thể nhìn và chắc chắn về độ liên quan còn thời tiết thì cho dù yếu tố biến đổi khí hậu có thay đổi qua hằng năm nhưng các mùa và thông số đo đạc vẫn liên quan mạnh mẽ đến thời tiết và biếu hiện được các biến số ngẫu nhiên khác qua chính chúng*
+- Đa dạng về tính phân bổ dữ liệu (có một số bộ dữ liệu có độ lệch giữa các label rất cao, mục đích của điều này sẽ được giải thích bên dưới)
+
+![labels_dist_of_datasets](.\images\Dataset Analytics\labels_dist_of_datasets.png)
+
+Trên đây là biểu đồ phân bổ của các label trong các bộ dữ liệu sẽ sử dụng. Dễ thấy có:
+
+- 2 bộ dữ liệu là MNIST và Olympic phân bổ theo phân phối đồng nhất (Uniform Distribution)
+- 1 bộ dữ liệu là Wine Quality là phân phối chuẩn tắc (Normal distribution)
+- 3 bộ dữ liệu còn lại chỉ có 2 label và đa số đều có độ lệch lớn (chênh nhau ít nhất 50% của label lớn hơn)
+
+Ta đều biết rằng trên thực tế, dữ liệu thu thập, sau khi tiền xử lý và imputation nhiều lúc sẽ cho ra những phân phối label khác với mong đợi. Vì vậy việc nghiên cứu thuật toán trên những bộ dữ liệu có độ lệch lớn là một yêu cầu mang tính thực tế rất cao. Nên việc nghiên cứu dữ liệu có độ lệch lớn theo mức độ tăng dần, và độ lệch lớn phân phôi theo kiểu chuẩn tắc cho ta cái nhìn bao quát hơn về thuật toán.
+
+Về việc sử dụng đa dạng số lượng record hay số lượng đặc trưng cũng phục vụ một mục đích là cho ta thấy trong những điều kiện khác nhau thuật toán này hoạt động như thế nào.
+
+Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao trong mối liên hệ giữa đặc trưng và nhãn còn cho ta thấy được sự tương quan trong khả năng giải quyết các bài toán khó và mới so với những bài toán đã quá quen thuộc và rõ ràng.
 
 ## Kết quả thực nghiệm
 
