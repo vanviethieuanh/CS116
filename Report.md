@@ -322,7 +322,7 @@ Các bộ dữ liệu được chọn có những tính chất đặc thù riên
 - Đa dạng về tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn: (pokemon, olympic) mơ hồ, (heart failure, winequality) bình thường, (MNIST, weather) rõ ràng. *Xin lưu ý rằng điểm của rượu tuy từ những thông tin kỹ thuật rõ ràng nhưng những biến cố ngẫu nhiên như người chấm điểm, món ăn và môi trường cũng như cảm xúc tác động rất nhiều, tương tự với việc một người bị suy tim có thể do yếu tố môi trường và cảm xúc tác động. Những bộ dữ liệu như MNIST thì hoàn toàn có thể nhìn và chắc chắn về độ liên quan còn thời tiết thì cho dù yếu tố biến đổi khí hậu có thay đổi qua hằng năm nhưng các mùa và thông số đo đạc vẫn liên quan mạnh mẽ đến thời tiết và biếu hiện được các biến số ngẫu nhiên khác qua chính chúng*
 - Đa dạng về tính phân bổ dữ liệu (có một số bộ dữ liệu có độ lệch giữa các label rất cao, mục đích của điều này sẽ được giải thích bên dưới)
 
-![labels_dist_of_datasets](.\images\Dataset Analytics\labels_dist_of_datasets.png)
+![labels_dist_of_datasets](https://github.com/vanviethieuanh/CS116.M11/blob/4e4c8f3ad67a24bc91a0475692791e787f01c48a/images/Dataset%20Analytics/labels_dist_of_datasets.png)
 
 Trên đây là biểu đồ phân bổ của các label trong các bộ dữ liệu sẽ sử dụng. Dễ thấy có:
 
