@@ -340,11 +340,21 @@ Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao t
 
 |Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy của phương pháp tối ưu EA | Accuracy của phương pháp tối ưu GA |
 |-----------------------|-----|----------------------------------|-------|
-|Dữ liệu về suy tim     |  0.75  | 0.7667                          | 0.75 |
-|Dữ liệu về Pokemon     |  0.665625 | 0.5781                           | 0.575 |
-|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8423                            | 
-|Dữ liệu về rượu vang đỏ| 0.671875 | 0.5812                            |  |
+|Dữ liệu về suy tim     |  0.75  | 0.7667                          | 0.7833333333333333 |
+|Dữ liệu về Pokemon     |  0.665625 | 0.5781                           | 0.578125 |
+|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8423                            |  |
+|Dữ liệu về rượu vang đỏ| 0.671875 | 0.5812                            | 0.575 |
 |Dữ liệu chữ số viết tay| 0.9692 | 0.8874                            |  |
+
+### So sánh giữa các mô hình khác
+
+|Bộ dữ liệu             | RandomForestClassifier | SVM |
+|-----------------------|-----|----------------------------------|
+|Dữ liệu về suy tim     |  0.75  |  0.75  | 
+|Dữ liệu về Pokemon     |  0.665625 | 0.603125 | 
+|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8652959943282524 |
+|Dữ liệu về rượu vang đỏ| 0.671875 | 0.603125 | 
+|Dữ liệu chữ số viết tay| 0.9692 | 0.966 | 
 
 # Kết luận
 
