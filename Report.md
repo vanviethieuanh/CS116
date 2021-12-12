@@ -337,25 +337,46 @@ Về việc sử dụng đa dạng số lượng record hay số lượng đặc
 Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao trong mối liên hệ giữa đặc trưng và nhãn còn cho ta thấy được sự tương quan trong khả năng giải quyết các bài toán khó và mới so với những bài toán đã quá quen thuộc và rõ ràng.
 
 ## Kết quả thực nghiệm
+Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên, nhóm đã thử nghiệm với nhiều thuật toán tối ưu khác nhau nhằm có cái nhìn đánh giá chính sác nhất và hiểu rỏ hơn với mô hình và các siêu tham số Random Forest Classifier.
+|Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy trên tập test của phương pháp tối ưu EA| Accuracy trên tập validation của phương pháp tối ưu EA | Accuracy của phương pháp tối ưu GA |
+|-----------------------|---------------------------------------------------|-------------------------------------------------|--------------------------------------------------------|----------------------------------------------|
+|Dữ liệu về trao giải Olympic|0.7121| 0.5146 |0.5398||
+|Dữ liệu về suy tim          |  0.75  | 0.7667 |0.9082| 0.7833333333333333 |
+|Dữ liệu về Pokemon          |  0.665625 | 0.5781  |0.6528| 0.578125 |
+|Dữ liệu thời tiết ở Úc      | 0.859092520382843 | 0.8423 |0.8444| 0.8383995037220844 |
+|Dữ liệu về rượu vang đỏ     | 0.671875 | 0.5812 |0.6560| 0.575 |
+|Dữ liệu chữ số viết tay     | 0.9692 | 0.8874   ||  |
+### Bảng tập các siêu tham số tối ưu của các thuật toán 
+Tập siêu tham số tìm kiếm được của các thuật giải theo thứ tự lần lượt là min_weight_fraction_leaf, bootstrap, max_depth, criterion, max_features, max_leaf_nodes, n_estimators,  ý nghĩa của các siêu tham số đã được giải thích ở mục trên, bảng dưới dây là tập các siêu tham số của các phương phấp tối tưu trên lần lượt 6 bộ dữ liệu.Lưu ý với siêu tham số max_features, đối số 'auto' và 'sqrt' về mặt ý nghĩa đều có giá trị tương đương nhau.
+|Bộ dữ liệu             | Tập siêu tham số mặc định | Tập siêu tham số của phương pháp tối ưu EA | Tập siêu tham số của phương pháp tối ưu GA |
+|-----------------------|---------------------------|--------------------------------------------|--------------------------------------------|
+|Dữ liệu về trao giải Olympic|0.0,True,None,'gini','auto',None,100|0.0,True,30,'entropy','log2',35,235||
+|Dữ liệu về suy tim          |0.0,True,None,'gini','auto',None,100|0.0121,True,17,'entropy','auto',31,223||
+|Dữ liệu về Pokemon          |0.0,True,None,'gini','auto',None,100|0.0,False,30,'gini','sqrt',35,203||
+|Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117||
+|Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204||
+|Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|||
+### So sánh kết quả Accuracy giữa các mô hình khác
+Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
+|Bộ dữ liệu             | Random Forest | SVM |Decision Tree |
+|-----------------------|---------------|-----|--------------|
+|Dữ liệu về trao giải Olympic|0.7121||0.7389|
+|Dữ liệu về suy tim     |  0.75  |  0.75  | 0.6333|
+|Dữ liệu về Pokemon     |  0.665625 | 0.603125 |0.5625| 
+|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8652959943282524 |0.7988|
+|Dữ liệu về rượu vang đỏ| 0.671875 | 0.603125 |0.5656| 
+|Dữ liệu chữ số viết tay| 0.9692 | 0.966 |0.8761|
 
-|Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy của phương pháp tối ưu EA | Accuracy của phương pháp tối ưu GA |
-|-----------------------|-----|----------------------------------|-------|
-|Dữ liệu về suy tim     |  0.75  | 0.7667                          | 0.7833333333333333 |
-|Dữ liệu về Pokemon     |  0.665625 | 0.5781                           | 0.578125 |
-|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8423                            | 0.8383995037220844 |
-|Dữ liệu về rượu vang đỏ| 0.671875 | 0.5812                            | 0.575 |
-|Dữ liệu chữ số viết tay| 0.9692 | 0.8874                            |  |
-
-### So sánh giữa các mô hình khác
-
-|Bộ dữ liệu             | RandomForestClassifier | SVM |
-|-----------------------|-----|----------------------------------|
-|Dữ liệu về suy tim     |  0.75  |  0.75  | 
-|Dữ liệu về Pokemon     |  0.665625 | 0.603125 | 
-|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8652959943282524 |
-|Dữ liệu về rượu vang đỏ| 0.671875 | 0.603125 | 
-|Dữ liệu chữ số viết tay| 0.9692 | 0.966 | 
-
+### So sánh thời gian thực thi giửa các mô hình
+Bảng dưới đây so sánh thời gian huấn luyện trung bình của các thuật toán phổ biến hiện nay được sử dụng trong bài toán phân lớp SVM, decision tree với RandomForest trên các loại bộ dữ liệu khác nhau qua đó có thể đánh giá thêm được các ưu, khuyết điểm về mặt thời gian của thuật toán RandomForest.
+|Bộ dữ liệu             | Random Forest | SVM |Decision Tree|
+|-----------------------|---------------|-----|-------------|
+|Dữ liệu về trao giải Olympic|1.7581||0.0567|
+|Dữ liệu về suy tim     |0.3863||0.0084|
+|Dữ liệu về Pokemon     |0.6120||0.0174| 
+|Dữ liệu thời tiết ở Úc |6.3322||1.3588|
+|Dữ liệu về rượu vang đỏ|0.6564||0.0202| 
+|Dữ liệu chữ số viết tay|54.0823||22.9517| 
 # Kết luận
 
 # Tài liệu tham kháo
