@@ -338,13 +338,13 @@ Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao t
 
 ## Kết quả thực nghiệm
 
-|Bộ dữ liệu             |Accuracy của phương pháp tối ưu EA|
-|-----------------------|----------------------------------|
-|Dữ liệu về suy tim     |  0.7667                          |
-|Dữ liệu về Pokemon     | 0.5781                           |
-|Dữ liệu thời tiết ở Úc |0.8423                            |
-|Dữ liệu về rượu vang đỏ|0.5812                            |  
-|Dữ liệu chữ số viết tay|0.8874                            |
+|Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy của phương pháp tối ưu EA | Accuracy của phương pháp tối ưu GA |
+|-----------------------|-----|----------------------------------|-------|
+|Dữ liệu về suy tim     |  0.75  | 0.7667                          | 0.75 |
+|Dữ liệu về Pokemon     |  0.665625 | 0.5781                           | 0.575 |
+|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8423                            | 
+|Dữ liệu về rượu vang đỏ| 0.671875 | 0.5812                            |  |
+|Dữ liệu chữ số viết tay| 0.9692 | 0.8874                            |  |
 
 # Kết luận
 
