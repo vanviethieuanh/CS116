@@ -358,25 +358,25 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 |Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271|0.02326561288964513,True,17,'gini','auto',31,196|
 ### So sánh kết quả Accuracy giữa các mô hình khác
 Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
-|Bộ dữ liệu             | Random Forest | SVM |Decision Tree |
-|-----------------------|---------------|-----|--------------|
-|Dữ liệu về trao giải Olympic|0.7121| 0.45496 |0.7389|
-|Dữ liệu về suy tim     |  0.75  |  0.75  | 0.6333|
-|Dữ liệu về Pokemon     |  0.665625 | 0.603125 |0.5625| 
-|Dữ liệu thời tiết ở Úc | 0.859092520382843 | 0.8652959943282524 |0.7988|
-|Dữ liệu về rượu vang đỏ| 0.671875 | 0.603125 |0.5656| 
-|Dữ liệu chữ số viết tay| 0.9692 | 0.966 |0.8761|
+|Bộ dữ liệu             | Random Forest |Decision Tree | SVM |
+|-----------------------|---------------|--------------|-----|
+|Dữ liệu về trao giải Olympic|0.7121|0.7389| 0.45496 |
+|Dữ liệu về suy tim     |  0.75  | 0.6333|  0.75  |
+|Dữ liệu về Pokemon     |  0.665625 |0.5625| 0.603125 |
+|Dữ liệu thời tiết ở Úc | 0.859092520382843 |0.7988| 0.8652959943282524 |
+|Dữ liệu về rượu vang đỏ| 0.671875 |0.5656| 0.603125 |
+|Dữ liệu chữ số viết tay| 0.9692 |0.8761| 0.966 |
 
 ### So sánh thời gian thực thi giửa các mô hình
 Bảng dưới đây so sánh thời gian huấn luyện trung bình của các thuật toán phổ biến hiện nay được sử dụng trong bài toán phân lớp SVM, decision tree với RandomForest trên các loại bộ dữ liệu khác nhau qua đó có thể đánh giá thêm được các ưu, khuyết điểm về mặt thời gian của thuật toán RandomForest.
-|Bộ dữ liệu             | Random Forest | SVM |Decision Tree|
-|-----------------------|---------------|-----|-------------|
-|Dữ liệu về trao giải Olympic|1.7581| 1.81 |0.0567|
-|Dữ liệu về suy tim     |0.3863| 0.015 |0.0084|
-|Dữ liệu về Pokemon     |0.6120| 0.12 |0.0174| 
-|Dữ liệu thời tiết ở Úc |6.3322| 3.666 |1.3588|
-|Dữ liệu về rượu vang đỏ|0.6564| 0.133 |0.0202| 
-|Dữ liệu chữ số viết tay|54.0823|8.233|22.9517| 
+|Bộ dữ liệu             | Random Forest |Decision Tree| SVM |
+|-----------------------|---------------|-------------|-----|
+|Dữ liệu về trao giải Olympic|1.7581|0.0567| 1.81 |
+|Dữ liệu về suy tim     |0.3863|0.0084| 0.015 |
+|Dữ liệu về Pokemon     |0.6120|0.0174| 0.12 |
+|Dữ liệu thời tiết ở Úc |6.3322|1.3588| 3.666 |
+|Dữ liệu về rượu vang đỏ|0.6564|0.0202| 0.133 |
+|Dữ liệu chữ số viết tay|54.0823|22.9517|8.233|
 # Kết luận
 
 # Tài liệu tham kháo
