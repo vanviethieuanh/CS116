@@ -362,6 +362,7 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 |Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117| 0.01647085677417005,True,16,'gini','auto',22,87|
 |Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204| 0.014338259357692609,True,7,'gini','sqrt',29,279|
 |Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271|0.02326561288964513,True,17,'gini','auto',31,196|
+
 Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mục tiêu, song lại bị giới hạn bởi các siêu tham số như **max_depth và max_leaf_nodes** nên việc đưa ra accuracy thấp là điều hoàn toàn dễ hiểu. Ta có thể khẳng định một điều rằng việc giới hạn này nên bỏ qua (như mặc định) hoặc có thể đặt ở những giới hạn cao hơn là những con số dưới 100. [note that this section still need more examinates]
 
 ### So sánh kết quả Accuracy giữa các mô hình khác
