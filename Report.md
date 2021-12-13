@@ -313,7 +313,7 @@ def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_e
 | Dữ liệu về Pokemon           | Có phải pokemon huyền thoại ?     | https://www.kaggle.com/abcsds/pokemon                        | pokemon.csv                                | 12           | 800             |
 | Dữ liệu thời tiết ở Úc       | Ngày mai có mưa ?                 | https://www.kaggle.com/jsphyg/weather-dataset-rattle-package | weatherAUS.csv                             | 22           | 145460          |
 | Dữ liệu về rượu vang đỏ      | Chất lượng rượu bao nhiêu điểm ?  | https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009 | winequality-red.csv                        | 11           | 1599            |
-| Dữ liệu chữ số viết tay      | Hình ảnh là số mấy (0-9) ?        | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | MNIST                                      | 784          | 60000           |
+| Dữ liệu chữ số viết tay      | Hình ảnh là số mấy (0-9) ?        | [MNIST handwritten digit database, Yann LeCun, Corinna Cortes and Chris Burges](http://yann.lecun.com/exdb/mnist/) | MNIST                                      | 784          | 70000           |
 
 Các bộ dữ liệu được chọn có những tính chất đặc thù riêng tạo nên tính đa dạng cho việc thực nghiệm với thuật toán:
 
@@ -345,7 +345,7 @@ Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên,
 |Dữ liệu về Pokemon          |  0.665625 | 0.5781  |0.6528| 0.578125 |
 |Dữ liệu thời tiết ở Úc      | 0.859092520382843 | 0.8423 |0.8444| 0.8383995037220844 |
 |Dữ liệu về rượu vang đỏ     | 0.671875 | 0.5812 |0.6560| 0.575 |
-|Dữ liệu chữ số viết tay     | 0.9692 | 0.8874   ||  |
+|Dữ liệu chữ số viết tay     | 0.9692 | 0.8874   |0.8782||
 ### Bảng tập các siêu tham số tối ưu của các thuật toán 
 Tập siêu tham số tìm kiếm được của các thuật giải theo thứ tự lần lượt là min_weight_fraction_leaf, bootstrap, max_depth, criterion, max_features, max_leaf_nodes, n_estimators,  ý nghĩa của các siêu tham số đã được giải thích ở mục trên, bảng dưới dây là tập các siêu tham số của các phương phấp tối tưu trên lần lượt 6 bộ dữ liệu.Lưu ý với siêu tham số max_features, đối số 'auto' và 'sqrt' về mặt ý nghĩa đều có giá trị tương đương nhau.
 |Bộ dữ liệu             | Tập siêu tham số mặc định | Tập siêu tham số của phương pháp tối ưu EA | Tập siêu tham số của phương pháp tối ưu GA |
@@ -355,7 +355,7 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 |Dữ liệu về Pokemon          |0.0,True,None,'gini','auto',None,100|0.0,False,30,'gini','sqrt',35,203||
 |Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117||
 |Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204||
-|Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|||
+|Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271||
 ### So sánh kết quả Accuracy giữa các mô hình khác
 Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
 |Bộ dữ liệu             | Random Forest | SVM |Decision Tree |
