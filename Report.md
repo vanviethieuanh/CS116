@@ -322,17 +322,17 @@ Các bộ dữ liệu được chọn có những tính chất đặc thù riên
 - Đa dạng về số lượng đặc trưng: (10,11,12) ít, (22) trung bình, (784) nhiều
 - Đa dạng về số lượng record: (299, 800) ít, (1599, 15433) trung bình, (60000, 145460) nhiều
 - Đa dạng về tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn: (pokemon, olympic) mơ hồ, (heart failure, winequality) bình thường, (MNIST, weather) rõ ràng. *Xin lưu ý rằng điểm của rượu tuy từ những thông tin kỹ thuật rõ ràng nhưng những biến cố ngẫu nhiên như người chấm điểm, món ăn và môi trường cũng như cảm xúc tác động rất nhiều, tương tự với việc một người bị suy tim có thể do yếu tố môi trường và cảm xúc tác động. Những bộ dữ liệu như MNIST thì hoàn toàn có thể nhìn và chắc chắn về độ liên quan còn thời tiết thì cho dù yếu tố biến đổi khí hậu có thay đổi qua hằng năm nhưng các mùa và thông số đo đạc vẫn liên quan mạnh mẽ đến thời tiết và biếu hiện được các biến số ngẫu nhiên khác qua chính chúng*
-- Đa dạng về tính phân bổ dữ liệu (có một số bộ dữ liệu có độ lệch giữa các label rất cao, mục đích của điều này sẽ được giải thích bên dưới)
+- Đa dạng về tính phân bổ dữ liệu (có một số bộ dữ liệu có độ lệch giữa các nhãn rất cao, mục đích của điều này sẽ được giải thích bên dưới)
 
 ![labels_dist_of_datasets](https://github.com/vanviethieuanh/CS116.M11/blob/4e4c8f3ad67a24bc91a0475692791e787f01c48a/images/Dataset%20Analytics/labels_dist_of_datasets.png)
 
-Trên đây là biểu đồ phân bổ của các label trong các bộ dữ liệu sẽ sử dụng. Dễ thấy có:
+Trên đây là biểu đồ phân bổ của các nhãn trong các bộ dữ liệu sẽ sử dụng. Dễ thấy có:
 
 - 2 bộ dữ liệu là MNIST và Olympic phân bổ theo phân phối đồng nhất (Uniform Distribution)
 - 1 bộ dữ liệu là Wine Quality là phân phối chuẩn tắc (Normal distribution)
-- 3 bộ dữ liệu còn lại chỉ có 2 label và đa số đều có độ lệch lớn (chênh nhau ít nhất 50% của label lớn hơn)
+- 3 bộ dữ liệu còn lại chỉ có 2 nhãn và đa số đều có độ lệch lớn (chênh nhau ít nhất 50% của nhãn lớn hơn)
 
-Ta đều biết rằng trên thực tế, dữ liệu thu thập, sau khi tiền xử lý và imputation nhiều lúc sẽ cho ra những phân phối label khác với mong đợi. Vì vậy việc nghiên cứu thuật toán trên những bộ dữ liệu có độ lệch lớn là một yêu cầu mang tính thực tế rất cao. Nên việc nghiên cứu dữ liệu có độ lệch lớn theo mức độ tăng dần, và độ lệch lớn phân phôi theo kiểu chuẩn tắc cho ta cái nhìn bao quát hơn về thuật toán.
+Ta đều biết rằng trên thực tế, dữ liệu thu thập, sau khi tiền xử lý và imputation nhiều lúc sẽ cho ra những phân phối nhãn khác với mong đợi. Vì vậy việc nghiên cứu thuật toán trên những bộ dữ liệu có độ lệch lớn là một yêu cầu mang tính thực tế rất cao. Nên việc nghiên cứu dữ liệu có độ lệch lớn theo mức độ tăng dần, và độ lệch lớn phân phôi theo kiểu chuẩn tắc cho ta cái nhìn bao quát hơn về thuật toán.
 
 Về việc sử dụng đa dạng số lượng record hay số lượng đặc trưng cũng phục vụ một mục đích là cho ta thấy trong những điều kiện khác nhau thuật toán này hoạt động như thế nào.
 
@@ -340,16 +340,19 @@ Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao t
 
 ## Kết quả thực nghiệm
 Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên, nhóm đã thử nghiệm với nhiều thuật toán tối ưu khác nhau nhằm có cái nhìn đánh giá chính sác nhất và hiểu rỏ hơn với mô hình và các siêu tham số Random Forest Classifier.
-|Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy trên tập test của phương pháp tối ưu EA| Accuracy trên tập validation của phương pháp tối ưu EA | Accuracy của phương pháp tối ưu GA |
-|-----------------------|---------------------------------------------------|-------------------------------------------------|--------------------------------------------------------|----------------------------------------------|
-|Dữ liệu về trao giải Olympic|0.7121| 0.5146 |0.5398| 0.575 |
-|Dữ liệu về suy tim          |  0.75  | 0.7667 |0.9082| 0.7833333333333333 |
-|Dữ liệu về Pokemon          |  0.665625 | 0.5781  |0.6528| 0.578125 |
-|Dữ liệu thời tiết ở Úc      | 0.859092520382843 | 0.8423 |0.8444| 0.8383995037220844 |
-|Dữ liệu về rượu vang đỏ     | 0.671875 | 0.5812 |0.6560| 0.575 |
-|Dữ liệu chữ số viết tay     | 0.9692 | 0.8874   |0.8782|0.8618|
+|Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy trên tập validation của phương pháp tối ưu EA | Accuracy trên tập test của phương pháp tối ưu EA| Accuracy của phương pháp tối ưu GA |
+|-----------------------|---------------------------------------------------|--------------------------------------------------------|-------------------------------------------------|----------------------------------------------|
+|Dữ liệu về trao giải Olympic|0.7121|0.5398| 0.5146 | 0.575 |
+|Dữ liệu về suy tim          |  0.75  |0.9082| 0.7667 | 0.7833333333333333 |
+|Dữ liệu về Pokemon          |  0.665625 |0.6528| 0.5781  | 0.578125 |
+|Dữ liệu thời tiết ở Úc      | 0.859092520382843 |0.8444| 0.8423 | 0.8383995037220844 |
+|Dữ liệu về rượu vang đỏ     | 0.671875 |0.6560| 0.5812 | 0.575 |
+|Dữ liệu chữ số viết tay     | 0.9692 |0.8782| 0.8874   |0.8618|
+Nhìn chung Accuracy của tất cả trường hợp tunning đều cho ra thấp hơn Accuracy mặc định. Có thể do việc tunning một số siêu tham số giới hạn dạng numerical mà nếu để mặc định thì những tham số này tự tối ưu hết mức có thể thay vì bị chặn trên bởi một con số nào đó. 
+
 ### Bảng tập các siêu tham số tối ưu của các thuật toán 
-Tập siêu tham số tìm kiếm được của các thuật giải theo thứ tự lần lượt là min_weight_fraction_leaf, bootstrap, max_depth, criterion, max_features, max_leaf_nodes, n_estimators,  ý nghĩa của các siêu tham số đã được giải thích ở mục trên, bảng dưới dây là tập các siêu tham số của các phương phấp tối tưu trên lần lượt 6 bộ dữ liệu.Lưu ý với siêu tham số max_features, đối số 'auto' và 'sqrt' về mặt ý nghĩa đều có giá trị tương đương nhau.
+
+Tập siêu tham số tìm kiếm được của các thuật giải theo thứ tự lần lượt là **min_weight_fraction_leaf, bootstrap, max_depth, criterion, max_features, max_leaf_nodes, n_estimators**,  ý nghĩa của các siêu tham số đã được giải thích ở mục trên, bảng dưới dây là tập các siêu tham số của các phương phấp tối tưu trên lần lượt 6 bộ dữ liệu.Lưu ý với siêu tham số max_features, đối số 'auto' và 'sqrt' về mặt ý nghĩa đều có giá trị tương đương nhau.
 |Bộ dữ liệu             | Tập siêu tham số mặc định | Tập siêu tham số của phương pháp tối ưu EA | Tập siêu tham số của phương pháp tối ưu GA |
 |-----------------------|---------------------------|--------------------------------------------|--------------------------------------------|
 |Dữ liệu về trao giải Olympic|0.0,True,None,'gini','auto',None,100|0.0,True,30,'entropy','log2',35,235|0.014338259357692609,True,7,'gini',29,279|
@@ -358,18 +361,26 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 |Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117| 0.01647085677417005,True,16,'gini','auto',22,87|
 |Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204| 0.014338259357692609,True,7,'gini','sqrt',29,279|
 |Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271|0.02326561288964513,True,17,'gini','auto',31,196|
-### So sánh kết quả Accuracy giữa các mô hình khác
-Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
-|Bộ dữ liệu             | Random Forest |Decision Tree | SVM |
-|-----------------------|---------------|--------------|-----|
-|Dữ liệu về trao giải Olympic|0.7121|0.7389| 0.45496 |
-|Dữ liệu về suy tim     |  0.75  | 0.6333|  0.75  |
-|Dữ liệu về Pokemon     |  0.665625 |0.5625| 0.603125 |
-|Dữ liệu thời tiết ở Úc | 0.859092520382843 |0.7988| 0.8652959943282524 |
-|Dữ liệu về rượu vang đỏ| 0.671875 |0.5656| 0.603125 |
-|Dữ liệu chữ số viết tay| 0.9692 |0.8761| 0.966 |
+Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mục tiêu, song lại bị giới hạn bởi các siêu tham số như **max_depth và max_leaf_nodes** nên việc đưa ra accuracy thấp là điều hoàn toàn dễ hiểu. Ta có thể khẳng định một điều rằng việc giới hạn này nên bỏ qua (như mặc định) hoặc có thể đặt ở những giới hạn cao hơn là những con số dưới 100. [note that this section still need more examinates]
 
-### So sánh thời gian thực thi giửa các mô hình
+### So sánh kết quả Accuracy giữa các mô hình khác
+
+Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
+|Bộ dữ liệu             |Decision Tree | Random Forest | SVM |
+|-----------------------|--------------|---------------|-----|
+|Dữ liệu về trao giải Olympic|0.7389|0.7121| 0.45496 |
+|Dữ liệu về suy tim     | 0.6333|  0.75  |  0.75  |
+|Dữ liệu về Pokemon     |0.5625|  0.665625 | 0.603125 |
+|Dữ liệu thời tiết ở Úc |0.7988| 0.859092520382843 | 0.8652959943282524 |
+|Dữ liệu về rượu vang đỏ|0.5656| 0.671875 | 0.603125 |
+|Dữ liệu chữ số viết tay|0.8761| 0.9692 | 0.966 |
+
+Random Forest về bản chất là một rừng Decision Tree nên nhìn chung trên hầy hết các bộ dữ liệu sẽ đều thể hiện tính vượt trội về accuracy. Duy nhất ở bộ dữ liệu Olympic thì tín liên kết giữa các tham số và nhãn hầu như không có tính liên quan và cực kì mơ hồ nên việc Accuracy thấp hơn là điều hoàn toàn có thể hiểu được. Đối lập với đó trên 2 bộ dữ liệu được nhận định là thực tế và có độ liên kết giữa parameters và nhãn cao (thời tiết và MNIST) thì Random Forest thể hiện mức accuracy cao hơn vượt trội so với Decision Tree (0,1).
+
+Một mô hình khác cũng được nhóm so sánh đó là SVM. Sở dĩ so sánh với SVM là vì thuật toán này ... 2 phương pháp có sự tương quan trong thông số accuracy ở các bộ dữ liệu có tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn cao (MNIST, Thời tiết, suy tim). Tuy nhiên ở những bộ dữ liệu mà yếu tố này mơ hồ thì SVM thể kém hơn (Olympic, Pokemon, Rượu vang).
+
+### So sánh thời gian thực thi giữa các mô hình
+
 Bảng dưới đây so sánh thời gian huấn luyện trung bình của các thuật toán phổ biến hiện nay được sử dụng trong bài toán phân lớp SVM, decision tree với RandomForest trên các loại bộ dữ liệu khác nhau qua đó có thể đánh giá thêm được các ưu, khuyết điểm về mặt thời gian của thuật toán RandomForest.
 |Bộ dữ liệu             | Random Forest |Decision Tree| SVM |
 |-----------------------|---------------|-------------|-----|
@@ -379,7 +390,17 @@ Bảng dưới đây so sánh thời gian huấn luyện trung bình của các 
 |Dữ liệu thời tiết ở Úc |6.3322|1.3588| 3.666 |
 |Dữ liệu về rượu vang đỏ|0.6564|0.0202| 0.133 |
 |Dữ liệu chữ số viết tay|54.0823|22.9517|8.233|
+Dễ dàng kiểm chứng dự đoán rằng thuật toán Decision Tree có thời gian thực thi nhanh hơn Random Forest (vốn bản chất là nhiều Decision Tree).
+
+Ở trên 5/6 bộ dữ liệu thì tốc độ train của thuật toán Random Forest đều chậm hơn SVM. Rõ nhất trên bộ dữ liệu về suy tim thể hiện tốc độ chỉ bằng 1/25 so với SVM.
+
 # Kết luận
+
+Thuật toán Random Forest nhìn chung đã khắc phục nhược điểm của Decision Tree trong đa số trường hợp để đưa ra accuracy cao hơn trong khi thử nghiệm tập test.
+
+Tuy nhiên thực nghiệm cũng đã chứng minh được rằng thuật toán này có tốc độ chậm hơn rất nhiều so với Decision Tree. Mặc dù những con số này có thể nhỏ nhưng để vận hành trơn tru một hệt thống lớn ta nên cân nhắc từ những yếu tố nhỏ nhất để đưa ra lựa chọn đánh đổi phù hợp với yêu cầu đặt ra.
+
+Ngoài ra, tuy rằng cải thiện vấn đề về overfiting so với Decision Tree song thuật toán này vẫn rất dễ rơi vào overfiting. Thể hiện rõ ở việc tuy rằng sử dụng các thuật toán khác nhau để tunning trên những khoảng siêu tham số lớn song kết quả đưa ra vẫn không cải thiện. Điều này đưa đến kết luận rằng thuật toán Random Forest không yêu cầu quá nhiều trong việc tunning do chính giới hạn kỹ thuật tạo nên thuật toán.
 
 # Tài liệu tham kháo
 

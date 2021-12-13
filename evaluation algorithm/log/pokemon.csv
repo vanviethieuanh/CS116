@@ -1,0 +1,11 @@
+number gen,min weight fraction leaf,bootstrap,max depth,criterion,max features,max leaf nodes,n estimators,fitness
+1,0.0015152533464157,False,14,gini,sqrt,31,220,0.6403400735294118
+2,0.0,True,21,entropy,sqrt,32,104,0.6474142156862746
+3,0.0,True,21,entropy,sqrt,32,104,0.6474142156862746
+4,0.0,True,17,gini,log2,35,184,0.6504473039215686
+5,0.0,True,17,gini,log2,35,184,0.6504473039215686
+6,0.0,True,17,gini,log2,35,184,0.6504473039215686
+7,0.0,False,30,gini,log2,35,256,0.6528370098039216
+8,0.0,False,30,gini,log2,35,256,0.6528370098039216
+9,0.0,False,30,gini,sqrt,35,203,0.6528523284313725
+10,0.0,False,30,gini,sqrt,35,203,0.6528523284313725
