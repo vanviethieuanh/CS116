@@ -1,4 +1,4 @@
-<h1 align="center"><b>RANDOM FOREST CLASSIFIER VÀ ẢNH HƯỞNG CỦA SIÊU THAM SỐ (HYPERPARAMETERS) ĐẾN KẾT QUẢ</b></h1>
+<h1 align="center"><b>RANDOM FOREST CLASSIFIER</b></h1>
 
 | Tên thành viên    | MSSV     |
 | ----------------- | -------- |
