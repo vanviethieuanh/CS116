@@ -1,6 +1,4 @@
-[toc]
-
-# Random Forest and effect of Hyperparameters on result
+<h1 align="center"><b>RANDOM FOREST CLASSIFIER VÀ ẢNH HƯỞNG CỦA SIÊU THAM SỐ (HYPERPARAMETERS) ĐẾN KẾT QUẢ</b></h1>
 
 | Tên thành viên    | MSSV     |
 | ----------------- | -------- |
@@ -61,7 +59,7 @@ Trong đó:
 
 ## Ưu điểm
 
-Khắc phục được yếu điểm lớn nhất của thuật toán Decision Tree, khi xây dựng Decision Tree nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị overfitting, hay nói cách khác là mô hình có phương sai cao (high variance). Thuật toán Random Forest giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên (Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần đặc trưng ... ), và kết quả cuối cùng được tổng hợp lại từ trung bình các kết quả dó đó nó sẽ cân bằng được độ đính sách (high accuracy) và phương sai (bias-variance), công thêm vào đó thuật toán rất phù hợp khi có rất nhiều đặc trưng có trong bộ dữ liệu.
+Khắc phục được yếu điểm lớn nhất của thuật toán Cây quyết định (Decision Tree), khi xây dựng Cây quyết định nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị overfitting, hay nói cách khác là mô hình có phương sai cao (high variance). Thuật toán Random Forest giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên (Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần đặc trưng ... ), và kết quả cuối cùng được tổng hợp lại từ trung bình các kết quả dó đó nó sẽ cân bằng được độ đính sách (high accuracy) và phương sai (bias-variance), công thêm vào đó thuật toán rất phù hợp khi có rất nhiều đặc trưng có trong bộ dữ liệu.
 
 Ngoài ra thuật toán Random Forest được sử dụng cho cả bài toán hồi quy và phân lớp, dể sử dụng khi không cần scale hay transform dữ liêu do thuật toán phù hợp cho cả dạng dữ liệu số và dữ liệu phân loại và ít bị ảnh hưởng với dữ liệu nhiễu trong bộ dữ liệu.
 
@@ -69,7 +67,7 @@ Thêm một yếu tố được sử dụng nhiều đó là thuật toán Rando
 
 ## Nhược điểm
 
-Random forests chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn.
+Rừng ngẫu nhiên (Random forests) chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn.
 
 Thuật toán cũng có thêm khuyết điểm bào gồm không dể diển giải hay biểu diển như các thuật toán tuyến tính, và Random forests giống như một thuật toán giải quyết hộp đen, có ít quyền kiểm soát những gì mô hình thực hiện.
 
@@ -260,7 +258,7 @@ Hạn chế là phương pháp này không đảm bảo sẽ tìm ra sự kết 
 
 ### Phương pháp tối ưu bằng thuật giải Evolutionary Algorithms
 
-Ý tưỡng của thuật toán được sử dụng để tối ưu tham số dự trên thuật toán di truyền Differential Evolution. Differential Evolution thường được sử dụng cho các bài toán tối ưu hộp đen dành cho các biến liên tục. Ở đây thuật toán được xây dựng với quần thể bao gồm 256 cá thể và sau 1300 lần dánh giá quần thể sẽ dần dần cái thiện đi đến hướng tham số tối ưu nhất có thể, cuối cùng khi kết thúc thuật toán cá thể tốt nhất sẽ được lựa chọn làm siêu tham số cho mô hình.
+Ý tưỡng của thuật toán được sử dụng để tối ưu tham số dự trên thuật toán di truyền Tiến hóa khác biệt (Differential Evolution). Tiến hóa khác biệt thường được sử dụng cho các bài toán tối ưu hộp đen dành cho các biến liên tục. Ở đây thuật toán được xây dựng với quần thể bao gồm 256 cá thể và sau 1300 lần dánh giá quần thể sẽ dần dần cái thiện đi đến hướng tham số tối ưu nhất có thể, cuối cùng khi kết thúc thuật toán cá thể tốt nhất sẽ được lựa chọn làm siêu tham số cho mô hình.
 
 ```python
 def DE(f_,f_score, bounds, F_scale = 0.8, cross_prob = 0.7, popsize = 256, max_evaluation=3000):
@@ -340,6 +338,7 @@ Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao t
 
 ## Kết quả thực nghiệm
 Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên, nhóm đã thử nghiệm với nhiều thuật toán tối ưu khác nhau nhằm có cái nhìn đánh giá chính sác nhất và hiểu rỏ hơn với mô hình và các siêu tham số Random Forest Classifier.
+
 |Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy trên tập validation của phương pháp tối ưu EA | Accuracy trên tập test của phương pháp tối ưu EA| Accuracy của phương pháp tối ưu GA |
 |-----------------------|---------------------------------------------------|--------------------------------------------------------|-------------------------------------------------|----------------------------------------------|
 |Dữ liệu về trao giải Olympic|0.7121|0.5398| 0.5146 | 0.575 |
@@ -348,11 +347,13 @@ Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên,
 |Dữ liệu thời tiết ở Úc      | 0.859092520382843 |0.8444| 0.8423 | 0.8383995037220844 |
 |Dữ liệu về rượu vang đỏ     | 0.671875 |0.6560| 0.5812 | 0.575 |
 |Dữ liệu chữ số viết tay     | 0.9692 |0.8782| 0.8874   |0.8618|
+
 Nhìn chung Accuracy của tất cả trường hợp tunning đều cho ra thấp hơn Accuracy mặc định. Có thể do việc tunning một số siêu tham số giới hạn dạng numerical mà nếu để mặc định thì những tham số này tự tối ưu hết mức có thể thay vì bị chặn trên bởi một con số nào đó. 
 
 ### Bảng tập các siêu tham số tối ưu của các thuật toán 
 
 Tập siêu tham số tìm kiếm được của các thuật giải theo thứ tự lần lượt là **min_weight_fraction_leaf, bootstrap, max_depth, criterion, max_features, max_leaf_nodes, n_estimators**,  ý nghĩa của các siêu tham số đã được giải thích ở mục trên, bảng dưới dây là tập các siêu tham số của các phương phấp tối tưu trên lần lượt 6 bộ dữ liệu.Lưu ý với siêu tham số max_features, đối số 'auto' và 'sqrt' về mặt ý nghĩa đều có giá trị tương đương nhau.
+
 |Bộ dữ liệu             | Tập siêu tham số mặc định | Tập siêu tham số của phương pháp tối ưu EA | Tập siêu tham số của phương pháp tối ưu GA |
 |-----------------------|---------------------------|--------------------------------------------|--------------------------------------------|
 |Dữ liệu về trao giải Olympic|0.0,True,None,'gini','auto',None,100|0.0,True,30,'entropy','log2',35,235|0.014338259357692609,True,7,'gini',29,279|
@@ -366,6 +367,7 @@ Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mụ
 ### So sánh kết quả Accuracy giữa các mô hình khác
 
 Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
+
 |Bộ dữ liệu             |Decision Tree | Random Forest | SVM |
 |-----------------------|--------------|---------------|-----|
 |Dữ liệu về trao giải Olympic|0.7389|0.7121| 0.45496 |
@@ -382,6 +384,7 @@ Một mô hình khác cũng được nhóm so sánh đó là SVM. Sở dĩ so s�
 ### So sánh thời gian thực thi giữa các mô hình
 
 Bảng dưới đây so sánh thời gian huấn luyện trung bình của các thuật toán phổ biến hiện nay được sử dụng trong bài toán phân lớp SVM, decision tree với RandomForest trên các loại bộ dữ liệu khác nhau qua đó có thể đánh giá thêm được các ưu, khuyết điểm về mặt thời gian của thuật toán RandomForest.
+
 |Bộ dữ liệu             | Random Forest |Decision Tree| SVM |
 |-----------------------|---------------|-------------|-----|
 |Dữ liệu về trao giải Olympic|1.7581|0.0567| 1.81 |
@@ -390,6 +393,7 @@ Bảng dưới đây so sánh thời gian huấn luyện trung bình của các 
 |Dữ liệu thời tiết ở Úc |6.3322|1.3588| 3.666 |
 |Dữ liệu về rượu vang đỏ|0.6564|0.0202| 0.133 |
 |Dữ liệu chữ số viết tay|54.0823|22.9517|8.233|
+
 Dễ dàng kiểm chứng dự đoán rằng thuật toán Decision Tree có thời gian thực thi nhanh hơn Random Forest (vốn bản chất là nhiều Decision Tree).
 
 Ở trên 5/6 bộ dữ liệu thì tốc độ train của thuật toán Random Forest đều chậm hơn SVM. Rõ nhất trên bộ dữ liệu về suy tim thể hiện tốc độ chỉ bằng 1/25 so với SVM.
@@ -398,7 +402,7 @@ Dễ dàng kiểm chứng dự đoán rằng thuật toán Decision Tree có th�
 
 Thuật toán Random Forest nhìn chung đã khắc phục nhược điểm của Decision Tree trong đa số trường hợp để đưa ra accuracy cao hơn trong khi thử nghiệm tập test.
 
-Tuy nhiên thực nghiệm cũng đã chứng minh được rằng thuật toán này có tốc độ chậm hơn rất nhiều so với Decision Tree. Mặc dù những con số này có thể nhỏ nhưng để vận hành trơn tru một hệt thống lớn ta nên cân nhắc từ những yếu tố nhỏ nhất để đưa ra lựa chọn đánh đổi phù hợp với yêu cầu đặt ra.
+Tuy nhiên thực nghiệm cũng đã chứng minh được rằng thuật toán này có tốc độ chậm hơn rất nhiều so với Decision Tree. Mặc dù những con số này có thể nhỏ nhưng để vận hành trơn tru một hệ thống lớn ta nên cân nhắc từ những yếu tố nhỏ nhất để đưa ra lựa chọn đánh đổi phù hợp với yêu cầu đặt ra.
 
 Ngoài ra, tuy rằng cải thiện vấn đề về overfiting so với Decision Tree song thuật toán này vẫn rất dễ rơi vào overfiting. Thể hiện rõ ở việc tuy rằng sử dụng các thuật toán khác nhau để tunning trên những khoảng siêu tham số lớn song kết quả đưa ra vẫn không cải thiện. Điều này đưa đến kết luận rằng thuật toán Random Forest không yêu cầu quá nhiều trong việc tunning do chính giới hạn kỹ thuật tạo nên thuật toán.
 
