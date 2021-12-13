@@ -351,10 +351,10 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 |Bộ dữ liệu             | Tập siêu tham số mặc định | Tập siêu tham số của phương pháp tối ưu EA | Tập siêu tham số của phương pháp tối ưu GA |
 |-----------------------|---------------------------|--------------------------------------------|--------------------------------------------|
 |Dữ liệu về trao giải Olympic|0.0,True,None,'gini','auto',None,100|0.0,True,30,'entropy','log2',35,235||
-|Dữ liệu về suy tim          |0.0,True,None,'gini','auto',None,100|0.0121,True,17,'entropy','auto',31,223||
-|Dữ liệu về Pokemon          |0.0,True,None,'gini','auto',None,100|0.0,False,30,'gini','sqrt',35,203||
-|Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117||
-|Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204||
+|Dữ liệu về suy tim          |0.0,True,None,'gini','auto',None,100|0.0121,True,17,'entropy','auto',31,223|0.03491406999734386,True,19,'gini','auto',26,253|
+|Dữ liệu về Pokemon          |0.0,True,None,'gini','auto',None,100|0.0,False,30,'gini','sqrt',35,203| 0.01485284373775305,False,24,'gini','log2',27,111|
+|Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117| 0.01647085677417005,True,16,'gini','auto',22,87|
+|Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204| 0.014338259357692609,True,7,'gini','sqrt',29,279|
 |Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271||
 ### So sánh kết quả Accuracy giữa các mô hình khác
 Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
@@ -371,12 +371,12 @@ Với mục đính đánh giá độ hiểu quả của thuật toán Random For
 Bảng dưới đây so sánh thời gian huấn luyện trung bình của các thuật toán phổ biến hiện nay được sử dụng trong bài toán phân lớp SVM, decision tree với RandomForest trên các loại bộ dữ liệu khác nhau qua đó có thể đánh giá thêm được các ưu, khuyết điểm về mặt thời gian của thuật toán RandomForest.
 |Bộ dữ liệu             | Random Forest | SVM |Decision Tree|
 |-----------------------|---------------|-----|-------------|
-|Dữ liệu về trao giải Olympic|1.7581||0.0567|
-|Dữ liệu về suy tim     |0.3863||0.0084|
-|Dữ liệu về Pokemon     |0.6120||0.0174| 
-|Dữ liệu thời tiết ở Úc |6.3322||1.3588|
-|Dữ liệu về rượu vang đỏ|0.6564||0.0202| 
-|Dữ liệu chữ số viết tay|54.0823||22.9517| 
+|Dữ liệu về trao giải Olympic|1.7581|  |0.0567|
+|Dữ liệu về suy tim     |0.3863| 0.015 |0.0084|
+|Dữ liệu về Pokemon     |0.6120| 0.12 |0.0174| 
+|Dữ liệu thời tiết ở Úc |6.3322| 3.666 |1.3588|
+|Dữ liệu về rượu vang đỏ|0.6564| 0.133 |0.0202| 
+|Dữ liệu chữ số viết tay|54.0823|8.233|22.9517| 
 # Kết luận
 
 # Tài liệu tham kháo
