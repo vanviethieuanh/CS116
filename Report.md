@@ -1,3 +1,5 @@
+[toc]
+
 <h1 align="center"><b>RANDOM FOREST CLASSIFIER</b></h1>
 
 | Tên thành viên    | MSSV     |
@@ -363,7 +365,7 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 |Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204| 0.014338259357692609,True,7,'gini','sqrt',29,279|
 |Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271|0.02326561288964513,True,17,'gini','auto',31,196|
 
-Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mục tiêu, song lại bị giới hạn bởi các siêu tham số như **max_depth và max_leaf_nodes** nên việc đưa ra accuracy thấp là điều hoàn toàn dễ hiểu. Ta có thể khẳng định một điều rằng việc giới hạn này nên bỏ qua (như mặc định) hoặc có thể đặt ở những giới hạn cao hơn là những con số dưới 100. [note that this section still need more examinates]
+Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mục tiêu, song lại bị giới hạn bởi các siêu tham số như **max_depth và max_leaf_nodes** nên việc đưa ra accuracy thấp là điều hoàn toàn dễ hiểu. Ta có thể khẳng định một điều rằng việc giới hạn này nên bỏ qua (như mặc định).
 
 ### So sánh kết quả Accuracy giữa các mô hình khác
 
@@ -380,7 +382,7 @@ Với mục đính đánh giá độ hiểu quả của thuật toán Random For
 
 Random Forest về bản chất là một rừng Decision Tree nên nhìn chung trên hầy hết các bộ dữ liệu sẽ đều thể hiện tính vượt trội về accuracy. Duy nhất ở bộ dữ liệu Olympic thì tín liên kết giữa các tham số và nhãn hầu như không có tính liên quan và cực kì mơ hồ nên việc Accuracy thấp hơn là điều hoàn toàn có thể hiểu được. Đối lập với đó trên 2 bộ dữ liệu được nhận định là thực tế và có độ liên kết giữa parameters và nhãn cao (thời tiết và MNIST) thì Random Forest thể hiện mức accuracy cao hơn vượt trội so với Decision Tree (0,1).
 
-Một mô hình khác cũng được nhóm so sánh đó là SVM. Sở dĩ so sánh với SVM là vì thuật toán này ... 2 phương pháp có sự tương quan trong thông số accuracy ở các bộ dữ liệu có tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn cao (MNIST, Thời tiết, suy tim). Tuy nhiên ở những bộ dữ liệu mà yếu tố này mơ hồ thì SVM thể kém hơn (Olympic, Pokemon, Rượu vang).
+Một mô hình khác cũng được nhóm so sánh đó là SVM. Sở dĩ so sánh với SVM là vì thuật toán này ra đời năm 1995 cùng với thời gian ra đời của Random Forest và 2 thuật toán này về các hoạt động có sự khác nhau khá lớn nên có thể cho ta cái nhìn mới hơn. 2 phương pháp có sự tương đối về thông số accuracy ở các bộ dữ liệu có tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn cao (MNIST, Thời tiết, suy tim). Tuy nhiên ở những bộ dữ liệu mà yếu tố này mơ hồ thì SVM thể kém hơn (Olympic, Pokemon, Rượu vang).
 
 ### So sánh thời gian thực thi giữa các mô hình
 
