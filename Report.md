@@ -375,9 +375,9 @@ Với mục đính đánh giá độ hiểu quả của thuật toán Random For
 |-----------------------|--------------|---------------|-----|
 |Dữ liệu về trao giải Olympic|0.7389|0.7121| 0.45496 |
 |Dữ liệu về suy tim     | 0.6333|  0.7500  |  0.7500  |
-|Dữ liệu về Pokemon     |0.5625|  0.665625 | 0.6031 |
+|Dữ liệu về Pokemon     |0.5625|  0.6656 | 0.6031 |
 |Dữ liệu thời tiết ở Úc |0.7988| 0.8591 | 0.8653 |
-|Dữ liệu về rượu vang đỏ|0.5656| 0.671875 | 0.6031 |
+|Dữ liệu về rượu vang đỏ|0.5656| 0.6719 | 0.6031 |
 |Dữ liệu chữ số viết tay|0.8761| 0.9692 | 0.9660 |
 
 Random Forest về bản chất là một rừng Decision Tree nên nhìn chung trên hầy hết các bộ dữ liệu sẽ đều thể hiện tính vượt trội về accuracy. Duy nhất ở bộ dữ liệu Olympic thì tín liên kết giữa các tham số và nhãn hầu như không có tính liên quan và cực kì mơ hồ nên việc Accuracy thấp hơn là điều hoàn toàn có thể hiểu được. Đối lập với đó trên 2 bộ dữ liệu được nhận định là thực tế và có độ liên kết giữa parameters và nhãn cao (thời tiết và MNIST) thì Random Forest thể hiện mức accuracy cao hơn vượt trội so với Decision Tree (0,1).
@@ -418,3 +418,5 @@ Ngoài ra, tuy rằng cải thiện vấn đề về overfiting so với Decisio
 [**[3]** Decision Tree algorithm](https://machinelearningcoban.com/tabml_book/ch_model/decision_tree.html)
 
 [**[4]** Phân lớp bằng Random Forests ](https://viblo.asia/p/phan-lop-bang-random-forests-trong-python-djeZ1D2QKWz)
+# Phụ lục 
+[**[Code]** Source code được sử dụng trong báo cáo](https://github.com/vanviethieuanh/CS116.M11)
