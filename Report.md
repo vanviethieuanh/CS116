@@ -343,11 +343,11 @@ Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên,
 
 |Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy trên tập validation của phương pháp tối ưu EA | Accuracy trên tập test của phương pháp tối ưu EA| Accuracy của phương pháp tối ưu GA |
 |-----------------------|---------------------------------------------------|--------------------------------------------------------|-------------------------------------------------|----------------------------------------------|
-|Dữ liệu về trao giải Olympic|0.7121|0.5398| 0.5146 | 0.575 |
-|Dữ liệu về suy tim          |  0.75  |0.9082| 0.7667 | 0.7833333333333333 |
-|Dữ liệu về Pokemon          |  0.665625 |0.6528| 0.5781  | 0.578125 |
-|Dữ liệu thời tiết ở Úc      | 0.859092520382843 |0.8444| 0.8423 | 0.8383995037220844 |
-|Dữ liệu về rượu vang đỏ     | 0.671875 |0.6560| 0.5812 | 0.575 |
+|Dữ liệu về trao giải Olympic|0.7121|0.5398| 0.5146 | 0.5750 |
+|Dữ liệu về suy tim          |  0.7500  |0.9082| 0.7667 | 0.7833 |
+|Dữ liệu về Pokemon          |  0.6656 |0.6528| 0.5781  | 0.5781 |
+|Dữ liệu thời tiết ở Úc      | 0.8591 |0.8444| 0.8423 | 0.8384 |
+|Dữ liệu về rượu vang đỏ     | 0.6718 |0.6560| 0.5812 | 0.5750 |
 |Dữ liệu chữ số viết tay     | 0.9692 |0.8782| 0.8874   |0.8618|
 
 Nhìn chung Accuracy của tất cả trường hợp tunning đều cho ra thấp hơn Accuracy mặc định. Có thể do việc tunning một số siêu tham số giới hạn dạng numerical mà nếu để mặc định thì những tham số này tự tối ưu hết mức có thể thay vì bị chặn trên bởi một con số nào đó. 
@@ -358,12 +358,12 @@ Tập siêu tham số tìm kiếm được của các thuật giải theo thứ 
 
 |Bộ dữ liệu             | Tập siêu tham số mặc định | Tập siêu tham số của phương pháp tối ưu EA | Tập siêu tham số của phương pháp tối ưu GA |
 |-----------------------|---------------------------|--------------------------------------------|--------------------------------------------|
-|Dữ liệu về trao giải Olympic|0.0,True,None,'gini','auto',None,100|0.0,True,30,'entropy','log2',35,235|0.014338259357692609,True,7,'gini',29,279|
-|Dữ liệu về suy tim          |0.0,True,None,'gini','auto',None,100|0.0121,True,17,'entropy','auto',31,223|0.03491406999734386,True,19,'gini','auto',26,253|
-|Dữ liệu về Pokemon          |0.0,True,None,'gini','auto',None,100|0.0,False,30,'gini','sqrt',35,203| 0.01485284373775305,False,24,'gini','log2',27,111|
-|Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117| 0.01647085677417005,True,16,'gini','auto',22,87|
-|Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204| 0.014338259357692609,True,7,'gini','sqrt',29,279|
-|Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271|0.02326561288964513,True,17,'gini','auto',31,196|
+|Dữ liệu về trao giải Olympic|0.0,True,None,'gini','auto',None,100|0.0,True,30,'entropy','log2',35,235|0.0143,True,7,'gini',29,279|
+|Dữ liệu về suy tim          |0.0,True,None,'gini','auto',None,100|0.0121,True,17,'entropy','auto',31,223|0.0349,True,19,'gini','auto',26,253|
+|Dữ liệu về Pokemon          |0.0,True,None,'gini','auto',None,100|0.0,False,30,'gini','sqrt',35,203| 0.0149,False,24,'gini','log2',27,111|
+|Dữ liệu thời tiết ở Úc      |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,117| 0.0165,True,16,'gini','auto',22,87|
+|Dữ liệu về rượu vang đỏ     |0.0,True,None,'gini','auto',None,100|0.0,False,26,'gini','sqrt',35,204| 0.0143,True,7,'gini','sqrt',29,279|
+|Dữ liệu chữ số viết tay     |0.0,True,None,'gini','auto',None,100|0.0,True,20,'gini','log2',35,271|0.0233,True,17,'gini','auto',31,196|
 
 Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mục tiêu, song lại bị giới hạn bởi các siêu tham số như **max_depth và max_leaf_nodes** nên việc đưa ra accuracy thấp là điều hoàn toàn dễ hiểu. Ta có thể khẳng định một điều rằng việc giới hạn này nên bỏ qua (như mặc định).
 
@@ -374,11 +374,11 @@ Với mục đính đánh giá độ hiểu quả của thuật toán Random For
 |Bộ dữ liệu             |Decision Tree | Random Forest | SVM |
 |-----------------------|--------------|---------------|-----|
 |Dữ liệu về trao giải Olympic|0.7389|0.7121| 0.45496 |
-|Dữ liệu về suy tim     | 0.6333|  0.75  |  0.75  |
-|Dữ liệu về Pokemon     |0.5625|  0.665625 | 0.603125 |
-|Dữ liệu thời tiết ở Úc |0.7988| 0.859092520382843 | 0.8652959943282524 |
-|Dữ liệu về rượu vang đỏ|0.5656| 0.671875 | 0.603125 |
-|Dữ liệu chữ số viết tay|0.8761| 0.9692 | 0.966 |
+|Dữ liệu về suy tim     | 0.6333|  0.7500  |  0.7500  |
+|Dữ liệu về Pokemon     |0.5625|  0.665625 | 0.6031 |
+|Dữ liệu thời tiết ở Úc |0.7988| 0.8591 | 0.8653 |
+|Dữ liệu về rượu vang đỏ|0.5656| 0.671875 | 0.6031 |
+|Dữ liệu chữ số viết tay|0.8761| 0.9692 | 0.9660 |
 
 Random Forest về bản chất là một rừng Decision Tree nên nhìn chung trên hầy hết các bộ dữ liệu sẽ đều thể hiện tính vượt trội về accuracy. Duy nhất ở bộ dữ liệu Olympic thì tín liên kết giữa các tham số và nhãn hầu như không có tính liên quan và cực kì mơ hồ nên việc Accuracy thấp hơn là điều hoàn toàn có thể hiểu được. Đối lập với đó trên 2 bộ dữ liệu được nhận định là thực tế và có độ liên kết giữa parameters và nhãn cao (thời tiết và MNIST) thì Random Forest thể hiện mức accuracy cao hơn vượt trội so với Decision Tree (0,1).
 
@@ -390,12 +390,12 @@ Bảng dưới đây so sánh thời gian huấn luyện trung bình của các 
 
 |Bộ dữ liệu             | Random Forest |Decision Tree| SVM |
 |-----------------------|---------------|-------------|-----|
-|Dữ liệu về trao giải Olympic|1.7581|0.0567| 1.81 |
-|Dữ liệu về suy tim     |0.3863|0.0084| 0.015 |
-|Dữ liệu về Pokemon     |0.6120|0.0174| 0.12 |
-|Dữ liệu thời tiết ở Úc |6.3322|1.3588| 3.666 |
-|Dữ liệu về rượu vang đỏ|0.6564|0.0202| 0.133 |
-|Dữ liệu chữ số viết tay|54.0823|22.9517|8.233|
+|Dữ liệu về trao giải Olympic|1.7581|0.0567| 1.8100 |
+|Dữ liệu về suy tim     |0.3863|0.0084| 0.0150 |
+|Dữ liệu về Pokemon     |0.6120|0.0174| 0.1200 |
+|Dữ liệu thời tiết ở Úc |6.3322|1.3588| 3.6660 |
+|Dữ liệu về rượu vang đỏ|0.6564|0.0202| 0.1330 |
+|Dữ liệu chữ số viết tay|54.0823|22.9517|8.2330|
 
 Dễ dàng kiểm chứng dự đoán rằng thuật toán Decision Tree có thời gian thực thi nhanh hơn Random Forest (vốn bản chất là nhiều Decision Tree).
 
