@@ -339,7 +339,7 @@ Về việc sử dụng đa dạng số lượng record hay số lượng đặc
 Ngoài ra việc lựa chọn những bộ dữ liệu mang tính mơ hồ cao trong mối liên hệ giữa đặc trưng và nhãn còn cho ta thấy được sự tương quan trong khả năng giải quyết các bài toán khó và mới so với những bài toán đã quá quen thuộc và rõ ràng.
 
 ## Kết quả thực nghiệm
-Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên, nhóm đã thử nghiệm với nhiều thuật toán tối ưu khác nhau nhằm có cái nhìn đánh giá chính sác nhất và hiểu rỏ hơn với mô hình và các siêu tham số Random Forest Classifier.
+Qua thực nghiệm trên các bộ dữ liệu được lựa chọn ở trên, nhóm đã thử nghiệm với nhiều thuật toán tối ưu khác nhau nhằm có cái nhìn đánh giá chính sác nhất và hiểu rỏ hơn với mô hình và các siêu tham số Phần lớp bằng rừng ngẫu nhiên(Random Forest Classifier).
 
 |Bộ dữ liệu             | Accuracy của mô hình khi sử dụng tham số mặc định | Accuracy trên tập validation của phương pháp tối ưu EA | Accuracy trên tập test của phương pháp tối ưu EA| Accuracy của phương pháp tối ưu GA |
 |-----------------------|---------------------------------------------------|--------------------------------------------------------|-------------------------------------------------|----------------------------------------------|
@@ -369,7 +369,7 @@ Dễ thấy rằng các hàm tối ưu khi không được thiết kế đa mụ
 
 ### So sánh kết quả Accuracy giữa các mô hình khác
 
-Với mục đính đánh giá độ hiểu quả của thuật toán Random Forest, nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Decision tree với Random Forest.
+Với mục đính đánh giá độ hiểu quả của thuật toán Rừng ngẫu nhiên(Random Forest), nhóm cũng đã thực hiện chạy song song các mô hình khác trên cùng 6 bộ dữ liệu trên.Bảng dưới đây so sánh kết quả Accuracy giữa thuật toán thân lớp SVM và Cây quyết định(Decision tree) với Rừng ngẫu nhiên(Random Forest).
 
 |Bộ dữ liệu             |Decision Tree | Random Forest | SVM |
 |-----------------------|--------------|---------------|-----|
@@ -380,7 +380,7 @@ Với mục đính đánh giá độ hiểu quả của thuật toán Random For
 |Dữ liệu về rượu vang đỏ|0.5656| 0.6719 | 0.6031 |
 |Dữ liệu chữ số viết tay|0.8761| 0.9692 | 0.9660 |
 
-Random Forest về bản chất là một rừng Decision Tree nên nhìn chung trên hầy hết các bộ dữ liệu sẽ đều thể hiện tính vượt trội về accuracy. Duy nhất ở bộ dữ liệu Olympic thì tín liên kết giữa các tham số và nhãn hầu như không có tính liên quan và cực kì mơ hồ nên việc Accuracy thấp hơn là điều hoàn toàn có thể hiểu được. Đối lập với đó trên 2 bộ dữ liệu được nhận định là thực tế và có độ liên kết giữa parameters và nhãn cao (thời tiết và MNIST) thì Random Forest thể hiện mức accuracy cao hơn vượt trội so với Decision Tree (0,1).
+Rừng ngẫu nhiên(Random Forest) về bản chất là một rừng Cây quyết định(Decision tree) nên nhìn chung trên hầy hết các bộ dữ liệu sẽ đều thể hiện tính vượt trội về accuracy. Duy nhất ở bộ dữ liệu Olympic thì tín liên kết giữa các tham số và nhãn hầu như không có tính liên quan và cực kì mơ hồ nên việc Accuracy thấp hơn là điều hoàn toàn có thể hiểu được. Đối lập với đó trên 2 bộ dữ liệu được nhận định là thực tế và có độ liên kết giữa các tham số(parameters) và nhãn cao (thời tiết và MNIST) thì Rừng ngẫu nhiên(Random Forest) thể hiện mức accuracy cao hơn vượt trội so với Cây quyết định (0,1).
 
 Một mô hình khác cũng được nhóm so sánh đó là SVM. Sở dĩ so sánh với SVM là vì thuật toán này ra đời năm 1995 cùng với thời gian ra đời của Random Forest và 2 thuật toán này về các hoạt động có sự khác nhau khá lớn nên có thể cho ta cái nhìn mới hơn. 2 phương pháp có sự tương đối về thông số accuracy ở các bộ dữ liệu có tính rõ ràng trong quan hệ giữa các đặc trưng và nhãn cao (MNIST, Thời tiết, suy tim). Tuy nhiên ở những bộ dữ liệu mà yếu tố này mơ hồ thì SVM thể kém hơn (Olympic, Pokemon, Rượu vang).
 
@@ -397,17 +397,17 @@ Bảng dưới đây so sánh thời gian huấn luyện trung bình của các 
 |Dữ liệu về rượu vang đỏ|0.6564|0.0202| 0.1330 |
 |Dữ liệu chữ số viết tay|54.0823|22.9517|8.2330|
 
-Dễ dàng kiểm chứng dự đoán rằng thuật toán Decision Tree có thời gian thực thi nhanh hơn Random Forest (vốn bản chất là nhiều Decision Tree).
+Dễ dàng kiểm chứng dự đoán rằng thuật toán Cây quyết định(Decision Tree) có thời gian thực thi nhanh hơn Random Forest (vốn bản chất là nhiều Decision Tree).
 
 Ở trên 5/6 bộ dữ liệu thì tốc độ train của thuật toán Random Forest đều chậm hơn SVM. Rõ nhất trên bộ dữ liệu về suy tim thể hiện tốc độ chỉ bằng 1/25 so với SVM.
 
 # Kết luận
 
-Thuật toán Random Forest nhìn chung đã khắc phục nhược điểm của Decision Tree trong đa số trường hợp để đưa ra accuracy cao hơn trong khi thử nghiệm tập test.
+Thuật toán Rừng ngẫu nhiên(Random Forest) nhìn chung đã khắc phục nhược điểm của Cây quyết định trong đa số trường hợp để đưa ra accuracy cao hơn trong khi thử nghiệm tập test.
 
-Tuy nhiên thực nghiệm cũng đã chứng minh được rằng thuật toán này có tốc độ chậm hơn rất nhiều so với Decision Tree. Mặc dù những con số này có thể nhỏ nhưng để vận hành trơn tru một hệ thống lớn ta nên cân nhắc từ những yếu tố nhỏ nhất để đưa ra lựa chọn đánh đổi phù hợp với yêu cầu đặt ra.
+Tuy nhiên thực nghiệm cũng đã chứng minh được rằng thuật toán này có tốc độ chậm hơn rất nhiều so với Cây quyết định. Mặc dù những con số này có thể nhỏ nhưng để vận hành trơn tru một hệ thống lớn ta nên cân nhắc từ những yếu tố nhỏ nhất để đưa ra lựa chọn đánh đổi phù hợp với yêu cầu đặt ra.
 
-Ngoài ra, tuy rằng cải thiện vấn đề về overfiting so với Decision Tree song thuật toán này vẫn rất dễ rơi vào overfiting. Thể hiện rõ ở việc tuy rằng sử dụng các thuật toán khác nhau để tunning trên những khoảng siêu tham số lớn song kết quả đưa ra vẫn không cải thiện. Điều này đưa đến kết luận rằng thuật toán Random Forest không yêu cầu quá nhiều trong việc tunning do chính giới hạn kỹ thuật tạo nên thuật toán.
+Ngoài ra, tuy rằng cải thiện vấn đề về quá khớp(overfiting) so với Cây quyết định song thuật toán này vẫn rất dễ rơi vào quá khớp(overfiting). Thể hiện rõ ở việc tuy rằng sử dụng các thuật toán khác nhau để điều chỉnh(tunning) trên những khoảng siêu tham số lớn song kết quả đưa ra vẫn không cải thiện. Điều này đưa đến kết luận rằng thuật toán Rừng ngẫu nhiên không yêu cầu quá nhiều trong việc tunning do chính giới hạn kỹ thuật tạo nên thuật toán.
 
 # Tài liệu tham kháo
 
