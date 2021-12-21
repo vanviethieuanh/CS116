@@ -17,21 +17,21 @@ Bộ phân loại rừng ngẫu nhiên (Random Forest Classifier) là mô hình 
 ## Giới thiệu về thuật toán Random Forest
 
 Random là ngẫu nhiên, Forest là rừng, nên ở thuật toán Random Forest sẽ xây dựng từ nhiều cây quyết định bằng thuật toán Cây quyết định (Decision Tree), tuy nhiên mỗi cây quyết định sẽ khác nhau (có yếu tố random). Sau đó kết quả dự đoán được tổng hợp từ các cây quyết định.
-Đối với bài toán này thì đầu ra của thuật toán Random Forest là loại được chọn bởi hầu hết các cây.
+Đối với bài toán này thì đầu ra của thuật toán Rừng ngẫu nhiên(Random Forest) là loại được chọn bởi hầu hết các cây.
 
-Về mặt kỹ thuật, thuật toán Random Forest là một phương pháp tổng hợp (dựa trên cách tiếp cận chia để trị) của các cây quyết định được tạo trên một tập dữ liệu được phân chia ngẫu nhiên. Tập hợp các bộ phân loại cây quyết định này còn được gọi là rừng. Các cây quyết định riêng lẻ được tạo bằng cách sử dụng một chỉ báo lựa chọn thuộc tính như mức tăng thông tin, tỷ lệ tăng cho mỗi thuộc tính. Mỗi cây phụ thuộc vào một mẫu ngẫu nhiên độc lập. Trong một bài toán phân loại, mỗi cây bình chọn và lớp phổ biến nhất được chọn làm kết quả cuối cùng. Nó đơn giản hơn và mạnh mẽ hơn so với các thuật toán phân loại phi tuyến tính khác.
+Về mặt kỹ thuật, thuật toán Rừng ngẫu nhiên(Random Forest) là một phương pháp tổng hợp (dựa trên cách tiếp cận chia để trị) của các cây quyết định được tạo trên một tập dữ liệu được phân chia ngẫu nhiên. Tập hợp các bộ phân loại cây quyết định này còn được gọi là rừng. Các cây quyết định riêng lẻ được tạo bằng cách sử dụng một chỉ báo lựa chọn thuộc tính như mức tăng thông tin, tỷ lệ tăng cho mỗi thuộc tính. Mỗi cây phụ thuộc vào một mẫu ngẫu nhiên độc lập. Trong một bài toán phân loại, mỗi cây bình chọn và lớp phổ biến nhất được chọn làm kết quả cuối cùng. Nó đơn giản hơn và mạnh mẽ hơn so với các thuật toán phân loại phi tuyến tính khác.
 
 ## Thuật toán
 
 ### Decision Tree Learning
 
-Decision Tree là một phương pháp phổ biến cho các tác vụ học máy khác nhau. Đặc biệt, những cây được trồng rất sâu có xu hướng học các kiểu hình bất thường cao, chúng trang bị quá nhiều bộ huấn luyện của mình, tức là có độ lệch thấp, nhưng phương sai rất cao. Random Forest là một cách lấy trung bình nhiều cây quyết định sâu, được huấn luyện trên các phần khác nhau của cùng một tập huấn luyện, với mục tiêu giảm phương sai. Điều này phải trả giá bằng một sự gia tăng nhỏ trong độ chệch và một số mất khả năng diễn giải, nhưng nói chung là tăng đáng kể hiệu suất trong mô hình cuối cùng.
+Decision Tree-Cây quyết định là một phương pháp phổ biến cho các tác vụ học máy khác nhau. Đặc biệt, những cây được trồng rất sâu có xu hướng học các kiểu hình bất thường cao, chúng trang bị quá nhiều bộ huấn luyện của mình, tức là có độ lệch thấp, nhưng phương sai rất cao. Rừng ngẫu nhiên(Random Forest) là một cách lấy trung bình nhiều cây quyết định sâu, được huấn luyện trên các phần khác nhau của cùng một tập huấn luyện, với mục tiêu giảm phương sai. Điều này phải trả giá bằng một sự gia tăng nhỏ trong độ chệch và một số mất khả năng diễn giải, nhưng nói chung là tăng đáng kể hiệu suất trong mô hình cuối cùng.
 
-Forest giống như sự kết hợp của các nỗ lực thuật toán Decision Tree. Thực hiện việc làm việc theo nhóm của nhiều cây do đó cải thiện hiệu suất của một cây ngẫu nhiên duy nhất. Mặc dù không hoàn toàn giống nhau, nhưng các khu rừng mang lại hiệu quả của xác thực chéo gấp K lần.
+Forest giống như sự kết hợp của các nỗ lực thuật toán Cây quyết định(Decision Tree). Thực hiện việc làm việc theo nhóm của nhiều cây do đó cải thiện hiệu suất của một cây ngẫu nhiên duy nhất. Mặc dù không hoàn toàn giống nhau, nhưng các khu rừng mang lại hiệu quả của xác thực chéo gấp K lần.
 
 ### Bootstrap Aggregating
 
-Thuật toán đào tạo cho các khu rừng ngẫu nhiên áp dụng kỹ thuật tổng hợp bootstrap hay còn gọi là random sampling with replacement. Tức khi mình sample được 1 dữ liệu thì mình không bỏ dữ liệu đấy ra mà vẫn giữ lại trong tập dữ liệu ban đầu, rồi tiếp tục sample cho tới khi sample đủ n dữ liệu. Khi dùng kĩ thuật này thì tập n dữ liệu mới của mình có thể có những dữ liệu bị trùng nhau.
+Thuật toán đào tạo cho các khu rừng ngẫu nhiên áp dụng kỹ thuật tổng hợp bootstrap hay còn gọi là random sampling with replacement. Tức khi lấy mẫu(sample) được 1 dữ liệu thì  không bỏ dữ liệu đấy ra mà vẫn giữ lại trong tập dữ liệu ban đầu, rồi tiếp tục lấy mẫu(sample) cho tới khi lấy mẫu(sample) đủ n dữ liệu. Khi dùng kĩ thuật này thì tập n dữ liệu mới có thể có những dữ liệu bị trùng nhau.
 
 ![image](./images/bootstrap-aggregation-bagging.png)
 
@@ -61,19 +61,19 @@ Trong đó:
 
 ## Ưu điểm
 
-Khắc phục được yếu điểm lớn nhất của thuật toán Cây quyết định (Decision Tree), khi xây dựng Cây quyết định nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị overfitting, hay nói cách khác là mô hình có phương sai cao (high variance). Thuật toán Random Forest giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên (Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần đặc trưng ... ), và kết quả cuối cùng được tổng hợp lại từ trung bình các kết quả dó đó nó sẽ cân bằng được độ đính sách (high accuracy) và phương sai (bias-variance), công thêm vào đó thuật toán rất phù hợp khi có rất nhiều đặc trưng có trong bộ dữ liệu.
+Khắc phục được yếu điểm lớn nhất của thuật toán Cây quyết định (Decision Tree), khi xây dựng Cây quyết định nếu cây quyết định có độ sâu quá lớn dẫn đến mô hình học tập đúng cách phân loại trên các dữ liệu của tập train, khi đó mô hình dẫn đến bị quá khớp(overfitting), hay nói cách khác là mô hình có phương sai cao (high variance). Thuật toán Rừng ngẫu nhiên giải quyết vấn đề đó bằng cách với nhiều cây quyết định, mỗi cây quyết định được xây dựng từ các yếu tố ngẫu nhiên (Ngẫu nhiên từ một phần dữ liệu, ngẫu nhiên từ một phần đặc trưng ... ), và kết quả cuối cùng được tổng hợp lại từ trung bình các kết quả dó đó nó sẽ cân bằng được độ đính sách (high accuracy) và phương sai (bias-variance), công thêm vào đó thuật toán rất phù hợp khi có rất nhiều đặc trưng có trong bộ dữ liệu.
 
-Ngoài ra thuật toán Random Forest được sử dụng cho cả bài toán hồi quy và phân lớp, dể sử dụng khi không cần scale hay transform dữ liêu do thuật toán phù hợp cho cả dạng dữ liệu số và dữ liệu phân loại và ít bị ảnh hưởng với dữ liệu nhiễu trong bộ dữ liệu.
+Ngoài ra thuật toán Rừng ngẫu nhiên(Random Forest) được sử dụng cho cả bài toán hồi quy và phân lớp, dể sử dụng khi không cần scale hay transform dữ liêu do thuật toán phù hợp cho cả dạng dữ liệu số và dữ liệu phân loại và ít bị ảnh hưởng với dữ liệu nhiễu trong bộ dữ liệu.
 
-Thêm một yếu tố được sử dụng nhiều đó là thuật toán Random Forest có thể được sử dụng tốt trong cả bộ dữ liệu có các đặc trưng quan hệ tuyến tính và phi tuyến tính.
+Thêm một yếu tố được sử dụng nhiều đó là thuật toán Rừng ngẫu nhiên(Random Forest) có thể được sử dụng tốt trong cả bộ dữ liệu có các đặc trưng quan hệ tuyến tính và phi tuyến tính.
 
 ## Nhược điểm
 
-Rừng ngẫu nhiên (Random forests) chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn.
+Rừng ngẫu nhiên(Random forests) chậm tạo dự đoán bởi vì nó bao gồm nhiều cây quyết định. Bất cứ khi nào nó đưa ra dự đoán, tất cả các cây trong rừng phải đưa ra dự đoán cho cùng một đầu vào cho trước và sau đó thực hiện bỏ phiếu trên đó. Toàn bộ quá trình này sẽ tốn thời gian hơn.
 
 Thuật toán cũng có thêm khuyết điểm bào gồm không dể diển giải hay biểu diển như các thuật toán tuyến tính, và Random forests giống như một thuật toán giải quyết hộp đen, có ít quyền kiểm soát những gì mô hình thực hiện.
 
-Thuật toán cũng dễ bị underfit do không sử dụng tất cả các thuộc tính của bộ dữ liệu để xây dựng mà sử dụng random để chọn dữ liệu.
+Thuật toán cũng dễ bị underfit do không sử dụng tất cả các thuộc tính của bộ dữ liệu để xây dựng mà sử dụng tính ngẫu nhiên(random) để chọn dữ liệu.
 
 # Điều chỉnh siêu tham số (Hyperparameter tuning)
 
@@ -116,7 +116,7 @@ Lợi ích của tìm kiếm lưới (grid search) là nó đảm bảo để t�
 
 Hạn chế là nó rất tốn thời gian và tính toán tốn kém.
 
-Để hiểu hơn cách tối ưu hóa siêu tham số này, bạn có thể tham khảo các bước thực hiện ở đoạn mã bên dưới:
+Để hiểu hơn cách tối ưu hóa siêu tham số này, Dưới đây là đoạn mã tham khảo các bước thực hiện ở đoạn mã bên dưới:
 
 ```python
 
@@ -154,7 +154,7 @@ Lợi ích chính là giảm thời gian xử lý.
 
 Hạn chế là phương pháp này không đảm bảo sẽ tìm ra sự kết hợp tối ưu của các siêu tham số.
 
-Để hiểu hơn cách tối ưu hóa siêu tham số này, bạn có thể tham khảo các bước thực hiện ở đoạn mã bên dưới:
+Để hiểu hơn cách tối ưu hóa siêu tham số này, Dưới đây là đoạn mã tham khảo các bước thực hiện ở đoạn mã bên dưới:
 
 ```python
 
